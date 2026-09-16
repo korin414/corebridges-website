@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>はじめてのAI教室 | 大阪・浪速区</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Shippori+Mincho:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --sky: #d6eaf8;
+  --ocean: #2e86c1;
+  --deep: #1a5276;
+  --teal: #1abc9c;
+  --accent: #f39c12;
+  --cream: #fdfaf5;
+  --gray-light: #f4f6f8;
+  --gray: #7f8c8d;
+  --dark: #1c2833;
+  --white: #ffffff;
+  --radius: 16px;
+  --shadow: 0 8px 32px rgba(30,80,130,0.10);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background: var(--cream);
+  color: var(--dark);
+  line-height: 1.75;
+  overflow-x: hidden;
+}
+
+/* ========= NAVBAR ========= */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(46,134,193,0.12);
+  padding: 0 5vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+}
+
+.nav-logo {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--deep);
+  letter-spacing: 0.05em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-size: 13px;
+  color: var(--dark);
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.nav-links a:hover { opacity: 1; color: var(--ocean); }
+
+/* ========= HERO ========= */
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #eaf4fb 0%, #f5f8fa 50%, #e8f8f5 100%);
+  display: flex;
+  align-items: center;
+  padding: 80px 5vw 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -120px; right: -120px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(46,134,193,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: -80px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(26,188,156,0.07) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.hero-inner {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: linear-gradient(90deg, var(--teal), var(--ocean));
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 16px;
+  border-radius: 100px;
+  letter-spacing: 0.08em;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--deep);
+  margin-bottom: 20px;
+}
+
+.hero h1 em {
+  font-style: normal;
+  color: var(--ocean);
+}
+
+.hero-sub {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 36px;
+  max-width: 420px;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 14px 32px;
+  background: linear-gradient(135deg, var(--ocean), var(--deep));
+  color: white;
+  text-decoration: none;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 15px;
+  box-shadow: 0 4px 20px rgba(46,134,193,0.35);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(46,134,193,0.45);
+}
+
+.btn-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: #06c755;
+  color: white;
+  text-decoration: none;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 15px;
+  box-shadow: 0 4px 16px rgba(6,199,85,0.30);
+  transition: transform 0.2s;
+}
+
+.btn-line:hover { transform: translateY(-2px); }
+
+.hero-visual {
+  position: relative;
+}
+
+.hero-visual img {
+  width: 100%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.hero-float-card {
+  position: absolute;
+  background: white;
+  border-radius: 12px;
+  padding: 12px 18px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--deep);
+  animation: float 3s ease-in-out infinite;
+}
+
+.hero-float-card.top-left {
+  top: -16px; left: -16px;
+  animation-delay: 0s;
+}
+
+.hero-float-card.bottom-right {
+  bottom: -16px; right: -16px;
+  animation-delay: 1.5s;
+  color: var(--teal);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* ========= QUIZ SECTION ========= */
+.quiz-section {
+  padding: 80px 5vw;
+  background: var(--deep);
+  color: white;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.quiz-section::before {
+  content: '謎解き';
+  position: absolute;
+  font-size: 200px;
+  font-family: 'Shippori Mincho', serif;
+  font-weight: 900;
+  opacity: 0.04;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.section-tag {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.85);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 100px;
+  letter-spacing: 0.12em;
+  margin-bottom: 16px;
+}
+
+.quiz-section h2 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: clamp(24px, 4vw, 40px);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.quiz-section p {
+  opacity: 0.75;
+  font-size: 15px;
+  margin-bottom: 40px;
+}
+
+.quiz-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto 36px;
+}
+
+.quiz-card {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.25s;
+}
+
+.quiz-card:hover { transform: scale(1.04); }
+
+.quiz-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+}
+
+.quiz-label {
+  position: absolute;
+  top: 10px; left: 10px;
+  background: rgba(0,0,0,0.55);
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 100px;
+}
+
+.quiz-answer-area {
+  background: rgba(255,255,255,0.08);
+  border-radius: var(--radius);
+  padding: 24px;
+  max-width: 500px;
+  margin: 0 auto;
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
+}
+
+.quiz-answer-area strong {
+  color: var(--teal);
+  font-size: 18px;
+}
+
+/* ========= PROBLEMS ========= */
+.problems {
+  padding: 80px 5vw;
+  background: var(--gray-light);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-header .section-tag {
+  background: rgba(46,134,193,0.1);
+  color: var(--ocean);
+}
+
+.section-header h2 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: clamp(24px, 3.5vw, 38px);
+  font-weight: 700;
+  color: var(--deep);
+  margin-bottom: 10px;
+}
+
+.section-header p {
+  color: var(--gray);
+  font-size: 15px;
+}
+
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  max-width: 1000px;
+  margin: 0 auto 36px;
+}
+
+.problem-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  border-left: 4px solid var(--ocean);
+  transition: transform 0.2s;
+}
+
+.problem-card:hover { transform: translateY(-4px); }
+
+.problem-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.problem-card p {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.6;
+}
+
+.solve-banner {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, var(--ocean), var(--teal));
+  color: white;
+  border-radius: var(--radius);
+  padding: 28px 36px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* ========= SERVICES ========= */
+.services {
+  padding: 80px 5vw;
+  background: var(--cream);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.service-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 28px 22px;
+  box-shadow: var(--shadow);
+  transition: transform 0.25s, box-shadow 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.service-card.s1::before { background: linear-gradient(90deg, #2e86c1, #5dade2); }
+.service-card.s2::before { background: linear-gradient(90deg, #1abc9c, #48c9b0); }
+.service-card.s3::before { background: linear-gradient(90deg, #8e44ad, #a569bd); }
+.service-card.s4::before { background: linear-gradient(90deg, #e67e22, #f0a500); }
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(30,80,130,0.15);
+}
+
+.service-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px; height: 32px;
+  background: var(--gray-light);
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 900;
+  color: var(--ocean);
+  margin-bottom: 12px;
+}
+
+.service-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--deep);
+  margin-bottom: 8px;
+}
+
+.service-price {
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--ocean);
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.service-price small {
+  font-size: 13px;
+  color: var(--gray);
+  font-weight: 400;
+}
+
+.service-card p {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.65;
+}
+
+.service-card .schedule {
+  margin-top: 14px;
+  padding: 10px 14px;
+  background: var(--gray-light);
+  border-radius: 8px;
+  font-size: 12px;
+  color: var(--deep);
+  font-weight: 700;
+}
+
+.service-card.s5::before { background: linear-gradient(90deg, #c0392b, #e74c3c); }
+
+.campaign-label {
+  display: inline-block;
+  background: #e74c3c;
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 100px;
+  margin-bottom: 4px;
+  letter-spacing: 0.05em;
+}
+
+.price-campaign {
+  font-size: 26px;
+  font-weight: 900;
+  color: #e74c3c;
+  line-height: 1.15;
+  display: block;
+}
+
+.price-regular {
+  font-size: 12px;
+  color: var(--gray);
+  text-decoration: line-through;
+  font-weight: 400;
+  display: block;
+  margin-top: 2px;
+}
+
+/* ========= CONSULTING ========= */
+.consulting {
+  padding: 80px 5vw;
+  background: linear-gradient(135deg, #1a2980, #26d0ce);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.consulting::before {
+  content: 'AI';
+  position: absolute;
+  font-size: 300px;
+  font-family: 'Shippori Mincho', serif;
+  font-weight: 900;
+  opacity: 0.05;
+  right: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  line-height: 1;
+}
+
+.consulting-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.consulting .section-tag {
+  background: rgba(255,255,255,0.2);
+}
+
+.consulting h2 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: clamp(26px, 3.5vw, 40px);
+  font-weight: 700;
+  margin-bottom: 18px;
+  line-height: 1.3;
+}
+
+.consulting p {
+  opacity: 0.85;
+  font-size: 15px;
+  margin-bottom: 28px;
+}
+
+.consult-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.consult-features li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.consult-features li::before {
+  content: '✓';
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px; height: 22px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+
+.consult-right {
+  background: rgba(255,255,255,0.12);
+  border-radius: var(--radius);
+  padding: 32px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.consult-right h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.consult-items {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.consult-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.consult-item-icon {
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.consult-item-text strong {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 3px;
+}
+
+.consult-item-text span {
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+/* ========= BENEFITS ========= */
+.benefits {
+  padding: 80px 5vw;
+  background: var(--gray-light);
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 18px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.benefit-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 28px 20px;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  transition: transform 0.2s;
+}
+
+.benefit-card:hover { transform: translateY(-4px); }
+
+.benefit-icon {
+  font-size: 36px;
+  margin-bottom: 14px;
+}
+
+.benefit-card h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--deep);
+  margin-bottom: 8px;
+}
+
+.benefit-card p {
+  font-size: 12px;
+  color: var(--gray);
+  line-height: 1.6;
+}
+
+/* ========= FEATURES ========= */
+.features {
+  padding: 60px 5vw;
+  background: var(--cream);
+}
+
+.features-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.pill {
+  background: white;
+  border: 2px solid var(--ocean);
+  color: var(--ocean);
+  border-radius: 100px;
+  padding: 10px 22px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* ========= CTA ========= */
+.cta {
+  padding: 80px 5vw;
+  background: var(--deep);
+  color: white;
+  text-align: center;
+}
+
+.cta h2 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: clamp(24px, 3.5vw, 38px);
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.cta p {
+  opacity: 0.75;
+  font-size: 15px;
+  margin-bottom: 36px;
+}
+
+.cta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.cta-card {
+  background: rgba(255,255,255,0.08);
+  border-radius: var(--radius);
+  padding: 28px 20px;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.cta-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: rgba(255,255,255,0.9);
+}
+
+.cta-card img {
+  width: 140px;
+  height: 140px;
+  border-radius: 10px;
+  background: white;
+  padding: 6px;
+}
+
+.cta-card p {
+  margin-top: 12px;
+  font-size: 12px;
+  opacity: 0.6;
+  margin-bottom: 0;
+}
+
+
+/* ========= FOOTER ========= */
+footer {
+  background: var(--dark);
+  color: rgba(255,255,255,0.7);
+  padding: 50px 5vw 30px;
+}
+
+.footer-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-brand .logo {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.footer-brand p {
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.footer-contact h4 {
+  color: white;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.footer-contact p {
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.footer-tel {
+  font-size: 22px !important;
+  font-weight: 700;
+  color: white !important;
+  letter-spacing: 0.05em;
+}
+
+.footer-bottom {
+  text-align: center;
+  font-size: 12px;
+  opacity: 0.4;
+}
+
+/* ========= RESPONSIVE ========= */
+@media (max-width: 768px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .consulting-inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .cta-grid {
+    grid-template-columns: 1fr;
+    max-width: 340px;
+  }
+
+  .quiz-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+  }
+
+  .nav-links { display: none; }
+
+  .footer-top { flex-direction: column; }
+}
+
+/* ========= ANIMATIONS ========= */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: none;
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">はじめてのAI教室</div>
+  <ul class="nav-links">
+    <li><a href="#services">サービス</a></li>
+    <li><a href="#consulting">法人・個人事業</a></li>
+    <li><a href="#benefits">受講効果</a></li>
+    <li><a href="#contact">お問い合わせ</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner container">
+    <div class="hero-text fade-in">
+      <span class="hero-badge">大阪・浪速区発 ／ 現役学生が教える</span>
+      <h1>AI、気になってるだけで<br>終わってない？<br><em>スマホ１つで変わる。</em></h1>
+      <p class="hero-sub">初心者から実践まで、あなたに合わせてサポート。<br>個人の学習から個人事業主・法人向けAIコンサルまで対応します。</p>
+      <div class="hero-btns">
+        <a href="https://lin.ee/W4Mw7YL" class="btn-line">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M19.365 9.89c.50 0 .907.41.907.91s-.407.91-.907.91h-1.913v1.04h1.913c.5 0 .907.41.907.91s-.407.91-.907.91h-2.82a.907.907 0 01-.907-.91V8.98c0-.5.406-.91.906-.91h2.821zm-13.73 0c.5 0 .907.41.907.91v3.79c0 .5-.407.91-.907.91s-.907-.41-.907-.91V10.8h-1.913v2.89c0 .5-.407.91-.907.91s-.907-.41-.907-.91V9.89c0-.5.407-.91.907-.91h3.727zm3.733 0c.5 0 .906.41.906.91v2.34l2.1-2.87c.17-.24.445-.38.737-.38.5 0 .906.41.906.91v3.79c0 .5-.406.91-.906.91s-.907-.41-.907-.91v-2.34l-2.1 2.87c-.17.24-.444.38-.736.38a.907.907 0 01-.907-.91V9.89c0-.5.407-.91.907-.91zm3.64 0h1.818c.5 0 .906.41.906.91s-.406.91-.906.91h-.91v.89h.91c.5 0 .906.41.906.91s-.406.91-.906.91h-.91v.09h.91c.5 0 .906.41.906.91s-.406.91-.906.91h-1.818a.907.907 0 01-.907-.91V10.8c0-.5.406-.91.907-.91z"/></svg>
+          LINEで無料相談
+        </a>
+        <a href="#services" class="btn-primary">サービスを見る</a>
+      </div>
+    </div>
+    <div class="hero-visual fade-in" style="animation-delay:0.2s">
+      <div class="hero-float-card top-left">🎓 現役学生が教える</div>
+      <img src="tirasi.png" alt="AI教室チラシ" onerror="this.style.background='linear-gradient(135deg,#d6eaf8,#e8f8f5)';this.style.minHeight='400px';this.alt='';this.removeAttribute('onerror')">
+      <div class="hero-float-card bottom-right">✅ 初心者OK</div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section class="quiz-section">
+  <div class="container">
+    <span class="section-tag">謎解きチャレンジ</span>
+    <h2>Q. どれが人間が作った作品？</h2>
+    <p>A〜Cの中から１つ選んで、あなたの直感を信じてみて！</p>
+    <div class="quiz-grid">
+      <div class="quiz-card" onclick="revealQuiz()">
+        <img src="huzi2.png" alt="A作品" onerror="this.src=''; this.style.background='#2c3e50'; this.style.minHeight='160px'">
+        <span class="quiz-label">A</span>
+      </div>
+      <div class="quiz-card" onclick="revealQuiz()">
+        <img src="huzi.jpg" alt="B作品" onerror="this.src=''; this.style.background='#1a5276'; this.style.minHeight='160px'">
+        <span class="quiz-label">B</span>
+      </div>
+      <div class="quiz-card" onclick="revealQuiz()">
+        <img src="huzi3.png" alt="C作品" onerror="this.src=''; this.style.background='#145a32'; this.style.minHeight='160px'">
+        <span class="quiz-label">C</span>
+      </div>
+    </div>
+    <div class="quiz-answer-area" id="quizAnswer" style="display:none">
+      <strong>正解は…B！</strong><br>
+      AIの作品はとてもリアルですよね。<br>
+      「見抜く力」と「使いこなす力」、一緒に身につけましょう。
+    </div>
+    <div class="quiz-answer-area" id="quizPrompt">
+      👆 どれかをタップして答えを確認！
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMS -->
+<section class="problems" id="problems">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-tag">こんなお悩みありませんか</span>
+      <h2>AI、気になってるけど…</h2>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card fade-in">
+        <span class="problem-icon">😕</span>
+        <p>AIって結局なにから始めたらいいか分からん</p>
+      </div>
+      <div class="problem-card fade-in">
+        <span class="problem-icon">💼</span>
+        <p>仕事に使いたいけどやり方が分からん</p>
+      </div>
+      <div class="problem-card fade-in">
+        <span class="problem-icon">😰</span>
+        <p>なんか流行ってるけど置いてかれそうで不安</p>
+      </div>
+      <div class="problem-card fade-in">
+        <span class="problem-icon">📱</span>
+        <p>スマホ操作に自信がない、難しそう…</p>
+      </div>
+    </div>
+    <div class="solve-banner fade-in">
+      その悩み、全部サポートします。
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-tag">サービス一覧</span>
+      <h2>選べる５つのプラン</h2>
+      <p>入門から本格指導まで、目的に合わせて選べます</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card s1 fade-in">
+        <div class="service-num">1</div>
+        <h3>AIコミュニティ</h3>
+        <div class="service-price">
+          ¥2,000<small>/月</small><br>
+          <small style="color:var(--gray);font-weight:400">年額 ¥20,000</small>
+        </div>
+        <p>AI勉強会に無料で参加できます。AI使い方などLINEでいつでもサポート。コミュニティ同士の交流で人脈が自然と広がります。</p>
+      </div>
+
+      <div class="service-card s2 fade-in">
+        <div class="service-num">2</div>
+        <h3>単発AI相談セッション</h3>
+        <div class="service-price">
+          <span class="campaign-label">9月まで限定</span>
+          <span class="price-campaign">¥3,000</span>
+          <span class="price-regular">通常 ¥5,000</span>
+        </div>
+        <p>45分のAIセッションで今の疑問をまるごと解決。気になることを気軽に聞ける単発プランです。</p>
+      </div>
+
+      <div class="service-card s3 fade-in">
+        <div class="service-num">3</div>
+        <h3>単発AI副業指導</h3>
+        <div class="service-price">
+          <span class="campaign-label">9月まで限定</span>
+          <span class="price-campaign">¥10,000</span>
+          <span class="price-regular">通常 ¥30,000</span>
+        </div>
+        <p>毎月副収入3万円をAIに稼がせるなど、実績あるノウハウとナレッジを基に徹底指導します。</p>
+      </div>
+
+      <div class="service-card s4 fade-in">
+        <div class="service-num">4</div>
+        <h3>マンツーマン<br>AIネイティブ化プログラム</h3>
+        <div class="service-price">
+          <span class="campaign-label">9月まで限定</span>
+          <span class="price-campaign" style="font-size:20px">¥10〜15万</span>
+          <span class="price-regular">通常 ¥20〜30万</span>
+        </div>
+        <p>3〜4ヶ月・合計6回以上のマンツーマン指導。最初からAIが身近にある若者のような思考回路へ強制アップデート。あなただけのAI活用法を習得できます。</p>
+        <div class="schedule">期間：3〜4ヶ月 ／ 計6回以上</div>
+      </div>
+
+      <div class="service-card s5 fade-in">
+        <div class="service-num">5</div>
+        <h3>少人数<br>AIネイティブ化プログラム</h3>
+        <div class="service-price">
+          <span class="campaign-label">9月まで限定</span>
+          <span class="price-campaign" style="font-size:20px">¥5〜10万</span>
+          <span class="price-regular">通常 ¥10〜20万</span>
+        </div>
+        <p>3人以下の少人数でカリキュラムに沿って丁寧に指導。仲間と一緒にセッションを重ね、AIネイティブへと変わっていきます。</p>
+        <div class="schedule">期間：3〜4ヶ月 ／ 定員3名まで</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONSULTING -->
+<section class="consulting" id="consulting">
+  <div class="consulting-inner container">
+    <div class="fade-in">
+      <span class="section-tag">個人事業主・法人向け</span>
+      <h2>AIコンサルティング<br>もお任せください。</h2>
+      <p>業務効率化・自動化・AI導入支援まで、現役学生ならではの最新知識でサポートします。</p>
+      <ul class="consult-features">
+        <li>業務フローのAI化・自動化の提案</li>
+        <li>ChatGPT・各種AIツール導入支援</li>
+        <li>スタッフ向けAI研修の実施</li>
+        <li>SNS・マーケティングへのAI活用</li>
+        <li>まずは無料相談から気軽にどうぞ</li>
+      </ul>
+    </div>
+    <div class="consult-right fade-in">
+      <h3>🏢 こんな方に選ばれています</h3>
+      <div class="consult-items">
+        <div class="consult-item">
+          <span class="consult-item-icon">🛍️</span>
+          <div class="consult-item-text">
+            <strong>小売・飲食業</strong>
+            <span>在庫管理・予約対応のAI活用</span>
+          </div>
+        </div>
+        <div class="consult-item">
+          <span class="consult-item-icon">💻</span>
+          <div class="consult-item-text">
+            <strong>フリーランス・副業</strong>
+            <span>提案書・SNS運用の効率化</span>
+          </div>
+        </div>
+        <div class="consult-item">
+          <span class="consult-item-icon">🏥</span>
+          <div class="consult-item-text">
+            <strong>士業・クリニック</strong>
+            <span>書類作成・情報整理の自動化</span>
+          </div>
+        </div>
+        <div class="consult-item">
+          <span class="consult-item-icon">🎓</span>
+          <div class="consult-item-text">
+            <strong>教育・塾</strong>
+            <span>教材作成・学習管理のAI化</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="benefits" id="benefits">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-tag">受講効果</span>
+      <h2>AIを学ぶと、こんな未来が手に入る！</h2>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card fade-in">
+        <div class="benefit-icon">⏰</div>
+        <h3>作業時間が一気に減る</h3>
+        <p>面倒な作業をAIに任せて、時間に余裕が生まれます。</p>
+      </div>
+      <div class="benefit-card fade-in">
+        <div class="benefit-icon">🚀</div>
+        <h3>AIを"使える側"になれる</h3>
+        <p>アイデアが形になり、自分の世界が広がります。</p>
+      </div>
+      <div class="benefit-card fade-in">
+        <div class="benefit-icon">💰</div>
+        <h3>副業・収入の選択肢が増える</h3>
+        <p>スキルを活かして、働き方や収入の幅が広がります。</p>
+      </div>
+      <div class="benefit-card fade-in">
+        <div class="benefit-icon">😊</div>
+        <h3>これからの時代を楽しめる</h3>
+        <p>AIを味方にすれば、これからの時代がもっと楽しく。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-tag">はじめての方でも安心</span>
+      <h2>こんな安心ポイントがあります</h2>
+    </div>
+    <div class="features-pills fade-in">
+      <span class="pill">✅ 完全初心者OK</span>
+      <span class="pill">🤝 マンツーマン対応</span>
+      <span class="pill">📱 スマホだけでもOK</span>
+      <span class="pill">❓ 何度でも質問OK</span>
+      <span class="pill">👨‍🎓 現役学生がサポート</span>
+      <span class="pill">💬 少人数でしっかり学べる</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA -->
+<section class="cta" id="contact">
+  <div class="container">
+    <h2>まずは気軽に相談OK！</h2>
+    <p>「AI相談」と送るだけ！スタッフが丁寧にご対応します。</p>
+    <div class="cta-grid">
+      <div class="cta-card">
+        <h3>📲 LINEで相談する</h3>
+        <img src="corebridgeLINE.png" alt="LINE QRコード">
+        <p>「AI相談」と送るだけ</p>
+      </div>
+      <div class="cta-card">
+        <h3>📸 Instagramもチェック！</h3>
+        <img src="instagram.png" alt="Instagram QRコード" style="filter:hue-rotate(240deg)">
+        <p>@kigyourin1201<br>最新情報・活動を発信中！</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">はじめてのAI教室</div>
+        <p>
+          現役学生が教える、大阪発のAI学習ラボ。<br>
+          初心者からビジネス活用まで、丁寧にサポートします。
+        </p>
+      </div>
+      <div class="footer-contact">
+        <h4>お問い合わせ</h4>
+        <p class="footer-tel">📞 06-7777-8372</p>
+        <p>〒556-0015</p>
+        <p>大阪府大阪市浪速区敷津西1丁目5-7</p>
+        <p>敷津大国廣島マンション4階8号室</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 はじめてのAI教室 All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Quiz interaction
+function revealQuiz() {
+  document.getElementById('quizPrompt').style.display = 'none';
+  document.getElementById('quizAnswer').style.display = 'block';
+}
+</script>
+
+</body>
+</html>
