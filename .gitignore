@@ -1,0 +1,10 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+
+# backups / temp
+*.bak
+*~
+index_old_backup.html
