@@ -13,7 +13,7 @@
 
 ## 公開中の関連
 - 本番ドメイン: https://corebridges.site
-- 決済（かんたん契約）: https://nimble-bonbon-16d2b8.netlify.app
+- 決済（かんたん契約）: https://jolly-starlight-8f41c4.netlify.app/
 - LINE: https://lin.ee/RNf6mxZ
 
 ## TODO（公開前に必要な作業）
