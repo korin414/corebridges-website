@@ -380,6 +380,48 @@ footer { background: var(--ink); color: rgba(255,255,255,.72); padding: 62px 0 3
   .float-card.fc3 { display: none; }
   .hero { padding-top: 116px; }
 }
+
+/* ===== MASCOT もこ + CHAT ===== */
+.hero-bg-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .16; z-index: 0; pointer-events: none; }
+.hero-visual.with-moko { display: flex; flex-direction: column; align-items: center; gap: 4px; position: relative; z-index: 1; }
+.moko-stage { position: relative; width: min(80%, 340px); aspect-ratio: 1; }
+.moko { position: absolute; inset: 0; animation: mokoFloat 4.5s ease-in-out infinite; will-change: transform; }
+.moko img.moko-body { width: 100%; height: 100%; object-fit: contain; display: block; filter: drop-shadow(0 16px 26px rgba(60,110,90,.22)); }
+@keyframes mokoFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.moko-eye { position: absolute; width: 9.4%; aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle at 50% 38%, #fffefa, #efe7d6); box-shadow: inset 0 -1px 2px rgba(90,70,40,.18); overflow: hidden; }
+.moko-eye.l { left: 38.3%; top: 53.6%; transform: translate(-50%, -50%); }
+.moko-eye.r { left: 62%;  top: 53.6%; transform: translate(-50%, -50%); }
+.moko-pupil { position: absolute; left: 50%; top: 50%; width: 56%; aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle at 50% 45%, #4a3d2b, #2c2418);
+  transform: translate(calc(-50% + var(--px, 0px)), calc(-50% + var(--py, 0px))); transition: transform .09s ease-out; }
+.moko-pupil::after { content: ''; position: absolute; left: 24%; top: 18%; width: 30%; aspect-ratio: 1; border-radius: 50%; background: rgba(255,255,255,.92); }
+.moko-eyelid { position: absolute; left: -4%; top: -4%; width: 108%; height: 108%; border-radius: 50%; background: #ece3cf; transform: scaleY(0); transform-origin: 50% 8%; transition: transform .09s ease; }
+.moko.blink .moko-eyelid { transform: scaleY(1); }
+@media (prefers-reduced-motion: reduce) { .moko { animation: none; } }
+
+.moko-chat { width: min(94%, 400px); background: var(--surface); border: 1px solid var(--border); border-radius: 18px; box-shadow: var(--shadow); padding: 16px 18px; margin-top: 6px; position: relative; z-index: 1; }
+.moko-chat::before { content: ''; position: absolute; top: -9px; left: 50%; transform: translateX(-50%) rotate(45deg); width: 16px; height: 16px; background: var(--surface); border-left: 1px solid var(--border); border-top: 1px solid var(--border); }
+.moko-name { font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 900; font-size: 13px; color: var(--teal); margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+.moko-name .dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 3px rgba(34,197,94,.18); }
+.moko-msg { font-size: 14.5px; color: var(--ink); line-height: 1.7; min-height: 44px; }
+.moko-quick { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.moko-chip { font-size: 12.5px; font-weight: 700; color: var(--teal); background: var(--sage-soft); border: 1px solid var(--sage-line); border-radius: 100px; padding: 7px 13px; cursor: pointer; transition: background .15s, color .15s, transform .1s; text-decoration: none; }
+.moko-chip:hover { background: var(--teal); color: #fff; transform: translateY(-1px); }
+.moko-form { display: flex; gap: 8px; margin-top: 12px; }
+.moko-form input { flex: 1; font-family: inherit; font-size: 14px; border: 1px solid var(--border); border-radius: 100px; padding: 9px 14px; color: var(--ink); background: var(--surface-soft); }
+.moko-form input:focus { outline: none; border-color: var(--sage); }
+.moko-form button { border: none; background: var(--grad-teal); color: #fff; font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 700; border-radius: 100px; padding: 0 16px; cursor: pointer; }
+
+/* ===== IMAGE SLOTS ===== */
+.imgslot { position: relative; overflow: hidden; border-radius: var(--radius-sm); background: linear-gradient(135deg, var(--sage-soft), #fbfbfe); display: flex; align-items: center; justify-content: center; }
+.imgslot::after { content: attr(data-label); position: absolute; z-index: 1; color: var(--muted); font-size: 11px; opacity: .75; padding: 5px 9px; text-align: center; pointer-events: none; }
+.imgslot img { position: relative; z-index: 2; width: 100%; height: 100%; object-fit: cover; display: block; }
+.voice-photo { width: 100%; aspect-ratio: 16/10; margin-bottom: 14px; }
+.imgslot.standee { width: min(70%, 240px); aspect-ratio: 3/4; margin: 0 auto 26px; }
+.imgslot.section-illust { width: 100%; aspect-ratio: 16/7; margin-top: 30px; }
+
+@media (max-width: 980px) { .moko-stage { width: min(62%, 300px); } }
 </style>
 <noscript><style>.reveal{opacity:1!important;transform:none!important}.nav-links{position:static!important;transform:none!important}</style></noscript>
 </head>
@@ -403,6 +445,7 @@ footer { background: var(--ink); color: rgba(255,255,255,.72); padding: 62px 0 3
 
 <!-- HERO -->
 <header class="hero" id="top">
+  <img class="hero-bg-img" src="image/main-visual.jpg" alt="" onerror="this.remove()">
   <div class="container hero-inner">
     <div class="hero-text reveal">
       <div class="hero-badge"><span class="tag">40代〜70代の</span> はじめてのAIスクール</div>
@@ -422,11 +465,25 @@ footer { background: var(--ink); color: rgba(255,255,255,.72); padding: 62px 0 3
         <div class="item"><span>✓</span>押し売りなし</div>
       </div>
     </div>
-    <div class="hero-visual reveal">
-      <div class="hero-orb"></div>
-      <div class="float-card fc1"><span class="ic">📱</span>スマホが使えれば大丈夫</div>
-      <div class="float-card fc2"><span class="ic">🌱</span>ゼロからのスタート</div>
-      <div class="float-card fc3"><span class="ic">🤝</span>隣で一緒に</div>
+    <div class="hero-visual with-moko reveal">
+      <div class="moko-stage" id="mokoStage">
+        <div class="moko" id="moko">
+          <img class="moko-body" src="image/moko.png" alt="AIコンシェルジュ もこ">
+          <div class="moko-eye l"><div class="moko-pupil"></div><div class="moko-eyelid"></div></div>
+          <div class="moko-eye r"><div class="moko-pupil"></div><div class="moko-eyelid"></div></div>
+        </div>
+        <div class="float-card fc1"><span class="ic">📱</span>スマホでOK</div>
+        <div class="float-card fc2"><span class="ic">🌱</span>ゼロから安心</div>
+      </div>
+      <div class="moko-chat" id="mokoChat">
+        <div class="moko-name"><span class="dot"></span>もこ（AIコンシェルジュ）</div>
+        <div class="moko-msg" id="mokoMsg">こんにちは！もこだよ🌱 AIのこと、気になること、なんでも聞いてね。</div>
+        <div class="moko-quick" id="mokoQuick"></div>
+        <form class="moko-form" id="mokoForm" autocomplete="off">
+          <input id="mokoInput" type="text" placeholder="ここに入力してEnter…" aria-label="もこへの質問">
+          <button type="submit">送信</button>
+        </form>
+      </div>
     </div>
   </div>
 </header>
@@ -820,6 +877,64 @@ const io = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ===== もこ：目線追従＋まばたき＋チャット ===== */
+(function(){
+  const moko = document.getElementById('moko');
+  if(!moko) return;
+  const eyes = [...moko.querySelectorAll('.moko-eye')].map(e=>({el:e, p:e.querySelector('.moko-pupil')}));
+  let mx = innerWidth/2, my = innerHeight*0.4, moved = 0;
+  addEventListener('pointermove', e=>{ mx=e.clientX; my=e.clientY; moved=Date.now(); }, {passive:true});
+  function frame(t){
+    const idle = Date.now()-moved > 2600;
+    eyes.forEach((o,i)=>{
+      const r=o.el.getBoundingClientRect(); const cx=r.left+r.width/2, cy=r.top+r.height/2;
+      if(idle){ const a=t/900 + i*0.7; const m=r.width*0.15;
+        o.p.style.setProperty('--px',(Math.cos(a)*m).toFixed(1)+'px');
+        o.p.style.setProperty('--py',(Math.sin(a*1.3)*m).toFixed(1)+'px'); }
+      else { let dx=mx-cx, dy=my-cy; const d=Math.hypot(dx,dy)||1; const m=r.width*0.18; const k=Math.min(1,d/130);
+        o.p.style.setProperty('--px',(dx/d*m*k).toFixed(1)+'px');
+        o.p.style.setProperty('--py',(dy/d*m*k).toFixed(1)+'px'); }
+    });
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+  (function blink(){ moko.classList.add('blink'); setTimeout(()=>moko.classList.remove('blink'),150); setTimeout(blink, 2600+Math.random()*3400); })();
+
+  // ---- scripted chat ----
+  const msg=document.getElementById('mokoMsg'), quick=document.getElementById('mokoQuick');
+  const form=document.getElementById('mokoForm'), input=document.getElementById('mokoInput');
+  const A={
+    ai:{t:'AIは“かしこい道具”だよ。文章づくり・調べもの・要約もおまかせ。むずかしくないから安心してね😊',chips:[['もっと知る','#value']]},
+    beginner:{t:'もちろん平気！スマホが使えれば大丈夫。ゼロから、分かるまで何度でも一緒に進むよ🌱',chips:[['受講の流れ','#curriculum']]},
+    price:{t:'塾はマンツーマン／少人数のじっくり講座。コミュニティ「となりAIクエスト」は無料体験→月¥1,100（税込）だよ。',chips:[['料金を見る','#pricing'],['クエスト','quest.html']]},
+    quest:{t:'ゲーム感覚で学ぶAIコミュニティ！ジョブとバッジで、学びながら稼げるよ🎮',chips:[['クエストへ','quest.html']]},
+    contact:{t:'うれしい！LINEでやさしくご案内するよ。「相談」って送ってね📲',chips:[['LINEで相談','https://lin.ee/RNf6mxZ']]},
+    hello:{t:'やっほー！なにか気になることあった？下のボタンからも選べるよ🌱',chips:null},
+    thanks:{t:'どういたしまして！いつでも聞いてね😊',chips:null}
+  };
+  const DEFAULT=[['AIって何？','ai'],['初心者でも平気？','beginner'],['料金は？','price'],['クエストって？','quest'],['相談したい','contact']];
+  function chip(label,fn){ const b=document.createElement('button'); b.type='button'; b.className='moko-chip'; b.textContent=label; b.onclick=fn; return b; }
+  function go(href){ if(href.startsWith('#')){ const t=document.querySelector(href); if(t) t.scrollIntoView({behavior:'smooth'}); } else { window.open(href, href.startsWith('http')?'_blank':'_self'); } }
+  function renderDefault(){ quick.innerHTML=''; DEFAULT.forEach(([l,k])=>quick.appendChild(chip(l,()=>say(k)))); }
+  function say(key){ const a=A[key]||A.hello; msg.textContent=a.t;
+    if(a.chips){ quick.innerHTML=''; a.chips.forEach(([l,h])=>quick.appendChild(chip(l+' →',()=>go(h)))); quick.appendChild(chip('ほかの質問',()=>{ msg.textContent='なんでも聞いてね🌱'; renderDefault(); })); }
+    else renderDefault(); }
+  function match(q){ q=q.toLowerCase();
+    if(/料金|値段|いくら|価格|費用|円/.test(q))return'price';
+    if(/初心者|むずかし|難し|不安|大丈夫|できるか/.test(q))return'beginner';
+    if(/クエスト|コミュニティ|ゲーム/.test(q))return'quest';
+    if(/相談|問い合わせ|line|ライン|電話|連絡/.test(q))return'contact';
+    if(/ありがと|thanks/.test(q))return'thanks';
+    if(/こんにち|やあ|はじめ|hello|hi/.test(q))return'hello';
+    if(/ai|エーアイ|人工知能|何|なに/.test(q))return'ai';
+    return null; }
+  form.addEventListener('submit', e=>{ e.preventDefault(); const q=input.value.trim(); if(!q)return;
+    const k=match(q);
+    if(k){ say(k); } else { msg.textContent='むずかしい質問は、人がLINEでやさしくお答えするよ！'; quick.innerHTML=''; quick.appendChild(chip('LINEで相談 →',()=>go('https://lin.ee/RNf6mxZ'))); quick.appendChild(chip('ほかの質問',()=>{ msg.textContent='なんでも聞いてね🌱'; renderDefault(); })); }
+    input.value=''; });
+  renderDefault();
+})();
 </script>
 
 </body>
