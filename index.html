@@ -398,7 +398,11 @@ footer { background: var(--ink); color: rgba(255,255,255,.72); padding: 62px 0 3
 .moko-pupil::after { content: ''; position: absolute; left: 24%; top: 18%; width: 30%; aspect-ratio: 1; border-radius: 50%; background: rgba(255,255,255,.92); }
 .moko-eyelid { position: absolute; left: -4%; top: -4%; width: 108%; height: 108%; border-radius: 50%; background: #ece3cf; transform: scaleY(0); transform-origin: 50% 8%; transition: transform .09s ease; }
 .moko.blink .moko-eyelid { transform: scaleY(1); }
-@media (prefers-reduced-motion: reduce) { .moko { animation: none; } }
+.moko-body { transition: opacity .18s ease; }
+.moko.show-face .moko-eye { opacity: 0; }
+.moko.react { animation: mokoBounce .5s ease; }
+@keyframes mokoBounce { 0%,100%{transform:translateY(0) scale(1);} 30%{transform:translateY(-14px) scale(1.05,.96);} 60%{transform:translateY(0) scale(.97,1.03);} }
+@media (prefers-reduced-motion: reduce) { .moko { animation: none; } .moko.react { animation: none; } }
 
 .moko-chat { width: min(94%, 400px); background: var(--surface); border: 1px solid var(--border); border-radius: 18px; box-shadow: var(--shadow); padding: 16px 18px; margin-top: 6px; position: relative; z-index: 1; }
 .moko-chat::before { content: ''; position: absolute; top: -9px; left: 50%; transform: translateX(-50%) rotate(45deg); width: 16px; height: 16px; background: var(--surface); border-left: 1px solid var(--border); border-top: 1px solid var(--border); }
@@ -912,6 +916,31 @@ document.querySelectorAll('.imgslot img').forEach(im => {
   requestAnimationFrame(frame);
   (function blink(){ moko.classList.add('blink'); setTimeout(()=>moko.classList.remove('blink'),150); setTimeout(blink, 2600+Math.random()*3400); })();
 
+  // ---- 表情差分（顔がかわる） ----
+  const body = moko.querySelector('.moko-body');
+  const FACES = { happy:'image/moko-happy.png', think:'image/moko-think.png', surprise:'image/moko-surprise.png', wink:'image/moko-wink.png' };
+  const NEUTRAL = 'image/moko.png';
+  Object.values(FACES).forEach(src => { const i = new Image(); i.src = src; });
+  let faceTimer = null;
+  function setFace(name, hold){
+    clearTimeout(faceTimer);
+    body.style.opacity = 0;
+    if (name && FACES[name]) {
+      setTimeout(() => { body.src = FACES[name]; body.style.opacity = 1; }, 120);
+      moko.classList.add('show-face');
+      moko.classList.remove('react'); void moko.offsetWidth; moko.classList.add('react');
+      if (hold) faceTimer = setTimeout(() => setFace(null), hold);
+    } else {
+      setTimeout(() => { body.src = NEUTRAL; body.style.opacity = 1; }, 120);
+      moko.classList.remove('show-face');
+    }
+  }
+  const EXPR = { ai:'think', beginner:'happy', price:'think', quest:'happy', contact:'wink', hello:'happy', thanks:'happy' };
+  // 生きてる感：ときどきウインク
+  (function idleWink(){ setTimeout(() => { if (!moko.classList.contains('show-face')) setFace('wink', 900); idleWink(); }, 7000 + Math.random()*6000); })();
+  // マウスを乗せるとにっこり
+  moko.addEventListener('mouseenter', () => { if (!moko.classList.contains('show-face')) setFace('happy', 1200); });
+
   // ---- scripted chat ----
   const msg=document.getElementById('mokoMsg'), quick=document.getElementById('mokoQuick');
   const form=document.getElementById('mokoForm'), input=document.getElementById('mokoInput');
@@ -928,7 +957,7 @@ document.querySelectorAll('.imgslot img').forEach(im => {
   function chip(label,fn){ const b=document.createElement('button'); b.type='button'; b.className='moko-chip'; b.textContent=label; b.onclick=fn; return b; }
   function go(href){ if(href.startsWith('#')){ const t=document.querySelector(href); if(t) t.scrollIntoView({behavior:'smooth'}); } else { window.open(href, href.startsWith('http')?'_blank':'_self'); } }
   function renderDefault(){ quick.innerHTML=''; DEFAULT.forEach(([l,k])=>quick.appendChild(chip(l,()=>say(k)))); }
-  function say(key){ const a=A[key]||A.hello; msg.textContent=a.t;
+  function say(key){ const a=A[key]||A.hello; msg.textContent=a.t; setFace(EXPR[key]||'happy', 2900);
     if(a.chips){ quick.innerHTML=''; a.chips.forEach(([l,h])=>quick.appendChild(chip(l+' →',()=>go(h)))); quick.appendChild(chip('ほかの質問',()=>{ msg.textContent='なんでも聞いてね🌱'; renderDefault(); })); }
     else renderDefault(); }
   function match(q){ q=q.toLowerCase();
@@ -942,7 +971,7 @@ document.querySelectorAll('.imgslot img').forEach(im => {
     return null; }
   form.addEventListener('submit', e=>{ e.preventDefault(); const q=input.value.trim(); if(!q)return;
     const k=match(q);
-    if(k){ say(k); } else { msg.textContent='むずかしい質問は、人がLINEでやさしくお答えするよ！'; quick.innerHTML=''; quick.appendChild(chip('LINEで相談 →',()=>go('https://lin.ee/RNf6mxZ'))); quick.appendChild(chip('ほかの質問',()=>{ msg.textContent='なんでも聞いてね🌱'; renderDefault(); })); }
+    if(k){ say(k); } else { msg.textContent='むずかしい質問は、人がLINEでやさしくお答えするよ！'; setFace('surprise', 2800); quick.innerHTML=''; quick.appendChild(chip('LINEで相談 →',()=>go('https://lin.ee/RNf6mxZ'))); quick.appendChild(chip('ほかの質問',()=>{ msg.textContent='なんでも聞いてね🌱'; renderDefault(); })); }
     input.value=''; });
   renderDefault();
 })();
