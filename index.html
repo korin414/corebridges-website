@@ -386,19 +386,24 @@ footer { background: var(--ink); color: rgba(255,255,255,.72); padding: 62px 0 3
 .hero-visual.with-moko { display: flex; flex-direction: column; align-items: center; gap: 4px; position: relative; z-index: 1; }
 .moko-stage { position: relative; width: min(80%, 340px); aspect-ratio: 1; }
 .moko { position: absolute; inset: 0; animation: mokoFloat 4.5s ease-in-out infinite; will-change: transform; }
-.moko img.moko-body { width: 100%; height: 100%; object-fit: contain; display: block; filter: drop-shadow(0 16px 26px rgba(60,110,90,.22)); }
+.moko img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block; filter: drop-shadow(0 16px 26px rgba(60,110,90,.22)); transition: opacity .22s ease; }
+.moko img.moko-face { opacity: 0; pointer-events: none; }
+.moko.show-face img.moko-face { opacity: 1; }
+.moko.show-face img.moko-body { opacity: 0; }
 @keyframes mokoFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-.moko-eye { position: absolute; width: 9.4%; aspect-ratio: 1; border-radius: 50%;
-  background: radial-gradient(circle at 50% 38%, #fffefa, #efe7d6); box-shadow: inset 0 -1px 2px rgba(90,70,40,.18); overflow: hidden; }
-.moko-eye.l { left: 38.3%; top: 53.6%; transform: translate(-50%, -50%); }
-.moko-eye.r { left: 62%;  top: 53.6%; transform: translate(-50%, -50%); }
-.moko-pupil { position: absolute; left: 50%; top: 50%; width: 56%; aspect-ratio: 1; border-radius: 50%;
-  background: radial-gradient(circle at 50% 45%, #4a3d2b, #2c2418);
-  transform: translate(calc(-50% + var(--px, 0px)), calc(-50% + var(--py, 0px))); transition: transform .09s ease-out; }
-.moko-pupil::after { content: ''; position: absolute; left: 24%; top: 18%; width: 30%; aspect-ratio: 1; border-radius: 50%; background: rgba(255,255,255,.92); }
-.moko-eyelid { position: absolute; left: -4%; top: -4%; width: 108%; height: 108%; border-radius: 50%; background: #ece3cf; transform: scaleY(0); transform-origin: 50% 8%; transition: transform .09s ease; }
+/* 元の絵と同じ目（濃い茶色の楕円＋白ハイライト＋下の黄緑）を重ね、中身だけがそっと動く */
+.moko-eye { position: absolute; width: 10.9%; height: 13.2%; border-radius: 50%; overflow: hidden;
+  background: radial-gradient(ellipse at 50% 45%, #583c23 0%, #553921 55%, #462b11 100%);
+  box-shadow: inset 0 0 0 1.5px #432d11; transform: translate(-50%, -50%); transition: opacity .15s ease; }
+.moko-eye.l { left: 37.3%; top: 55.3%; }
+.moko-eye.r { left: 65.5%; top: 55.3%; }
+.moko-pupil { position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 36% at 50% 82%, #a3ad64 0%, #9aa45d 50%, rgba(154,164,93,0) 80%);
+  transform: translate(var(--px, 0px), var(--py, 0px)); transition: transform .12s ease-out; }
+.moko-pupil::before { content: ''; position: absolute; left: 22%; top: 14%; width: 30%; height: 28%; border-radius: 50%; background: #fdf7e3; }
+.moko-pupil::after { content: ''; position: absolute; left: 64%; top: 64%; width: 12%; height: 10%; border-radius: 50%; background: #d9e291; }
+.moko-eyelid { position: absolute; inset: -6%; border-radius: 50%; background: #fbf4e0; transform: scaleY(0); transform-origin: 50% 0; transition: transform .09s ease; }
 .moko.blink .moko-eyelid { transform: scaleY(1); }
-.moko-body { transition: opacity .18s ease; }
 .moko.show-face .moko-eye { opacity: 0; }
 .moko.react { animation: mokoBounce .5s ease; }
 @keyframes mokoBounce { 0%,100%{transform:translateY(0) scale(1);} 30%{transform:translateY(-14px) scale(1.05,.96);} 60%{transform:translateY(0) scale(.97,1.03);} }
@@ -427,7 +432,8 @@ footer { background: var(--ink); color: rgba(255,255,255,.72); padding: 62px 0 3
 .imgslot.standee { width: min(70%, 240px); aspect-ratio: 3/4; margin: 0 auto 26px; }
 .imgslot.section-illust { width: 100%; aspect-ratio: 16/7; margin-top: 30px; }
 
-@media (max-width: 980px) { .moko-stage { width: min(62%, 300px); } }
+@media (max-width: 980px) { .moko-stage { width: min(62%, 300px); } .moko-stage .float-card.fc1 { left: -14%; top: 0; } .moko-stage .float-card.fc2 { right: -14%; bottom: 0; } }
+@media (max-width: 720px) { .moko-stage { width: min(72%, 290px); } .moko-stage .float-card { display: none; } }
 </style>
 <noscript><style>.reveal{opacity:1!important;transform:none!important}.nav-links{position:static!important;transform:none!important}</style></noscript>
 </head>
@@ -474,7 +480,8 @@ footer { background: var(--ink); color: rgba(255,255,255,.72); padding: 62px 0 3
     <div class="hero-visual with-moko reveal">
       <div class="moko-stage" id="mokoStage">
         <div class="moko" id="moko">
-          <img class="moko-body" src="image/moko.png" alt="AIコンシェルジュ もこ">
+          <img class="moko-body" src="image/moko-base.png?v=3" alt="AIコンシェルジュ もこ">
+          <img class="moko-face" src="image/moko-happy.png?v=3" alt="" aria-hidden="true">
           <div class="moko-eye l"><div class="moko-pupil"></div><div class="moko-eyelid"></div></div>
           <div class="moko-eye r"><div class="moko-pupil"></div><div class="moko-eyelid"></div></div>
         </div>
@@ -904,10 +911,10 @@ document.querySelectorAll('.imgslot img').forEach(im => {
     const idle = Date.now()-moved > 2600;
     eyes.forEach((o,i)=>{
       const r=o.el.getBoundingClientRect(); const cx=r.left+r.width/2, cy=r.top+r.height/2;
-      if(idle){ const a=t/900 + i*0.7; const m=r.width*0.15;
+      if(idle){ const a=t/1400 + i*0.7; const m=r.width*0.07;
         o.p.style.setProperty('--px',(Math.cos(a)*m).toFixed(1)+'px');
         o.p.style.setProperty('--py',(Math.sin(a*1.3)*m).toFixed(1)+'px'); }
-      else { let dx=mx-cx, dy=my-cy; const d=Math.hypot(dx,dy)||1; const m=r.width*0.18; const k=Math.min(1,d/130);
+      else { let dx=mx-cx, dy=my-cy; const d=Math.hypot(dx,dy)||1; const m=r.width*0.13; const k=Math.min(1,d/160);
         o.p.style.setProperty('--px',(dx/d*m*k).toFixed(1)+'px');
         o.p.style.setProperty('--py',(dy/d*m*k).toFixed(1)+'px'); }
     });
@@ -917,21 +924,19 @@ document.querySelectorAll('.imgslot img').forEach(im => {
   (function blink(){ moko.classList.add('blink'); setTimeout(()=>moko.classList.remove('blink'),150); setTimeout(blink, 2600+Math.random()*3400); })();
 
   // ---- 表情差分（顔がかわる） ----
-  const body = moko.querySelector('.moko-body');
-  const FACES = { happy:'image/moko-happy.png', think:'image/moko-think.png', surprise:'image/moko-surprise.png', wink:'image/moko-wink.png' };
-  const NEUTRAL = 'image/moko.png';
+  const face = moko.querySelector('.moko-face');
+  const FACES = { happy:'image/moko-happy.png?v=3', think:'image/moko-think.png?v=3', wink:'image/moko-wink.png?v=3' };
   Object.values(FACES).forEach(src => { const i = new Image(); i.src = src; });
   let faceTimer = null;
+  // 通常の絵の上に表情の絵をふわっと重ねる（消える瞬間がないクロスフェード）
   function setFace(name, hold){
     clearTimeout(faceTimer);
-    body.style.opacity = 0;
     if (name && FACES[name]) {
-      setTimeout(() => { body.src = FACES[name]; body.style.opacity = 1; }, 120);
+      face.src = FACES[name];
       moko.classList.add('show-face');
       moko.classList.remove('react'); void moko.offsetWidth; moko.classList.add('react');
       if (hold) faceTimer = setTimeout(() => setFace(null), hold);
     } else {
-      setTimeout(() => { body.src = NEUTRAL; body.style.opacity = 1; }, 120);
       moko.classList.remove('show-face');
     }
   }
@@ -971,7 +976,7 @@ document.querySelectorAll('.imgslot img').forEach(im => {
     return null; }
   form.addEventListener('submit', e=>{ e.preventDefault(); const q=input.value.trim(); if(!q)return;
     const k=match(q);
-    if(k){ say(k); } else { msg.textContent='むずかしい質問は、人がLINEでやさしくお答えするよ！'; setFace('surprise', 2800); quick.innerHTML=''; quick.appendChild(chip('LINEで相談 →',()=>go('https://lin.ee/RNf6mxZ'))); quick.appendChild(chip('ほかの質問',()=>{ msg.textContent='なんでも聞いてね🌱'; renderDefault(); })); }
+    if(k){ say(k); } else { msg.textContent='むずかしい質問は、人がLINEでやさしくお答えするよ！'; setFace('think', 2800); quick.innerHTML=''; quick.appendChild(chip('LINEで相談 →',()=>go('https://lin.ee/RNf6mxZ'))); quick.appendChild(chip('ほかの質問',()=>{ msg.textContent='なんでも聞いてね🌱'; renderDefault(); })); }
     input.value=''; });
   renderDefault();
 })();
