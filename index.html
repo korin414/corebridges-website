@@ -83,6 +83,8 @@ h1, h2, h3, h4, .display {
   font-family: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
   letter-spacing: 0.01em;
   line-height: 1.5;
+  word-break: auto-phrase;
+  text-wrap: balance;
 }
 
 .container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
@@ -137,6 +139,9 @@ nav.scrolled { border-color: var(--border); box-shadow: var(--shadow-sm); }
 .hero-badge .tag { background: var(--grad-teal); color: #fff; font-size: 12px; padding: 4px 12px; border-radius: 100px; }
 .hero h1 { font-size: clamp(32px, 5.2vw, 56px); font-weight: 900; line-height: 1.35; color: var(--ink); margin-bottom: 22px; }
 .hero h1 .u { background: linear-gradient(transparent 62%, var(--sage-soft) 62%); padding: 0 .1em; }
+.hero h1 .nb { display: inline-block; }
+.hero-text { container-type: inline-size; }
+@supports (font-size: 1cqi) { .hero h1 { font-size: min(56px, 8.8cqi); } }
 .hero-sub { font-size: 18px; color: var(--ink-soft); max-width: 480px; margin-bottom: 22px; font-weight: 500; }
 .hero-brand { font-size: 14.5px; color: var(--muted); margin-bottom: 32px; padding-left: 15px; border-left: 3px solid var(--sage); }
 .hero-brand b { color: var(--teal); font-weight: 700; }
@@ -418,9 +423,9 @@ footer { background: var(--ink); color: rgba(255,255,255,.72); padding: 62px 0 3
 .moko-chip { font-size: 12.5px; font-weight: 700; color: var(--teal); background: var(--sage-soft); border: 1px solid var(--sage-line); border-radius: 100px; padding: 7px 13px; cursor: pointer; transition: background .15s, color .15s, transform .1s; text-decoration: none; }
 .moko-chip:hover { background: var(--teal); color: #fff; transform: translateY(-1px); }
 .moko-form { display: flex; gap: 8px; margin-top: 12px; }
-.moko-form input { flex: 1; font-family: inherit; font-size: 14px; border: 1px solid var(--border); border-radius: 100px; padding: 9px 14px; color: var(--ink); background: var(--surface-soft); }
+.moko-form input { flex: 1; min-width: 0; font-family: inherit; font-size: 14px; border: 1px solid var(--border); border-radius: 100px; padding: 9px 14px; color: var(--ink); background: var(--surface-soft); }
 .moko-form input:focus { outline: none; border-color: var(--sage); }
-.moko-form button { border: none; background: var(--grad-teal); color: #fff; font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 700; border-radius: 100px; padding: 0 16px; cursor: pointer; }
+.moko-form button { border: none; background: var(--grad-teal); color: #fff; font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 700; border-radius: 100px; padding: 0 16px; cursor: pointer; white-space: nowrap; flex-shrink: 0; }
 
 /* ===== IMAGE SLOTS ===== */
 .imgslot { position: relative; overflow: hidden; border-radius: var(--radius-sm); background: linear-gradient(135deg, var(--sage-soft), #fbfbfe); display: flex; align-items: center; justify-content: center; }
@@ -461,7 +466,7 @@ footer { background: var(--ink); color: rgba(255,255,255,.72); padding: 62px 0 3
   <div class="container hero-inner">
     <div class="hero-text reveal">
       <div class="hero-badge"><span class="tag">40代〜70代の</span> はじめてのAIスクール</div>
-      <h1>AI、気になってるだけで<br>終わって<span class="u">いませんか？</span></h1>
+      <h1><span class="nb">AI、気になってるだけで</span><br><span class="nb">終わって<span class="u">いませんか？</span></span></h1>
       <p class="hero-sub">スマホが使えれば大丈夫。<br>今からでも、十分間に合います。</p>
       <p class="hero-brand"><b>コアブリッジ ／ ゼロから教える AI入門塾</b><br>あなたのペースで、隣で一緒に。</p>
       <div class="hero-btns">
