@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>となりAI｜40代からの、はじめてのAI教室 - コアブリッジ（大阪）</title>
-<meta name="description" content="コアブリッジ「となりAI」は、40代〜70代のためのゼロから教えるAI入門塾。スマホが使えれば大丈夫。あなたのペースで、隣で一緒に。まずは無料セッションから。">
+<meta name="description" content="コアブリッジ「となりAI」は、40代〜70代のためのゼロから教えるAI入門塾。AIと人の仕事をトータルコーディネートし、一度学べばAI講師として教える側へ。スマホが使えれば大丈夫。まずは無料セッションから。">
 <meta name="theme-color" content="#2f7060">
 
 <meta property="og:type" content="website">
@@ -367,14 +367,17 @@ footer { background: var(--ink); color: rgba(255,255,255,.72); padding: 62px 0 3
   .profile-inner { grid-template-columns: 1fr; gap: 32px; }
   .profile-photo { max-width: 320px; margin: 0 auto; }
   .contact-grid { grid-template-columns: 1fr; }
-}
-@media (max-width: 720px) {
-  body { font-size: 16px; }
   .nav-links { position: fixed; inset: 68px 0 auto 0; flex-direction: column; background: var(--surface); padding: 22px 24px 28px; gap: 18px; align-items: flex-start; border-bottom: 1px solid var(--border); box-shadow: var(--shadow); transform: translateY(-140%); transition: transform .3s ease; }
   .nav-links.open { transform: translateY(0); }
   .nav-links .nav-cta { align-self: stretch; }
   .nav-toggle { display: grid; place-items: center; width: 42px; height: 42px; border: 1px solid var(--border); border-radius: 11px; background: #fff; cursor: pointer; gap: 4px; }
   .nav-toggle span { display: block; width: 19px; height: 2px; background: var(--ink); border-radius: 2px; }
+  .formula { flex-direction: column; max-width: 440px; }
+  .f-box { flex: none; padding: 20px 22px; }
+  .f-op { transform: rotate(90deg); padding: 0; }
+}
+@media (max-width: 720px) {
+  body { font-size: 16px; }
   .concern-grid, .curr-grid, .voice-grid, .price-grid, .promise-grid, .faq-grid, .route-grid, .value-notes { grid-template-columns: 1fr; }
   .formula { flex-direction: column; }
   .f-op { padding: 4px 0; }
@@ -412,7 +415,17 @@ footer { background: var(--ink); color: rgba(255,255,255,.72); padding: 62px 0 3
 .moko.show-face .moko-eye { opacity: 0; }
 .moko.react { animation: mokoBounce .5s ease; }
 @keyframes mokoBounce { 0%,100%{transform:translateY(0) scale(1);} 30%{transform:translateY(-14px) scale(1.05,.96);} 60%{transform:translateY(0) scale(.97,1.03);} }
-@media (prefers-reduced-motion: reduce) { .moko { animation: none; } .moko.react { animation: none; } }
+/* クリック（タップ）で反応：むにっと縮んでぴょん */
+.moko { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.moko:focus-visible { outline: 3px solid var(--sage); outline-offset: 6px; border-radius: 40%; }
+.moko.boing { animation: mokoBoing .62s cubic-bezier(.3,1.4,.5,1); }
+@keyframes mokoBoing { 0%{transform:translateY(0) scale(1);} 18%{transform:translateY(4px) scale(1.12,.84);} 45%{transform:translateY(-26px) scale(.92,1.1) rotate(-4deg);} 70%{transform:translateY(0) scale(1.06,.95) rotate(2deg);} 100%{transform:translateY(0) scale(1);} }
+.moko-pop { position: absolute; left: var(--x); top: var(--y); font-size: var(--s,22px); line-height: 1; pointer-events: none; z-index: 5; transform: translate(-50%,-50%); animation: mokoPop .9s ease-out forwards; }
+@keyframes mokoPop { 0%{opacity:0; transform:translate(-50%,-50%) scale(.3);} 20%{opacity:1;} 100%{opacity:0; transform:translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1.1) rotate(var(--r));} }
+.moko-hint { position: absolute; left: 50%; bottom: -4px; transform: translateX(-50%); background: #fff; color: var(--teal); font-size: 12.5px; font-weight: 700; padding: 5px 12px; border-radius: 100px; box-shadow: var(--shadow-sm); white-space: nowrap; pointer-events: none; animation: mokoHint 1.8s ease-in-out infinite; transition: opacity .3s; z-index: 4; }
+.moko-hint.hide { opacity: 0; }
+@keyframes mokoHint { 0%,100%{transform:translateX(-50%) translateY(0);} 50%{transform:translateX(-50%) translateY(-4px);} }
+@media (prefers-reduced-motion: reduce) { .moko { animation: none; } .moko.react, .moko.boing, .moko-hint { animation: none; } .moko-pop { display: none; } }
 
 .moko-chat { width: min(94%, 400px); background: var(--surface); border: 1px solid var(--border); border-radius: 18px; box-shadow: var(--shadow); padding: 16px 18px; margin-top: 6px; position: relative; z-index: 1; }
 .moko-chat::before { content: ''; position: absolute; top: -9px; left: 50%; transform: translateX(-50%) rotate(45deg); width: 16px; height: 16px; background: var(--surface); border-left: 1px solid var(--border); border-top: 1px solid var(--border); }
@@ -468,7 +481,7 @@ footer { background: var(--ink); color: rgba(255,255,255,.72); padding: 62px 0 3
       <div class="hero-badge"><span class="tag">40代〜70代の</span> はじめてのAIスクール</div>
       <h1><span class="nb">AI、気になってるだけで</span><br><span class="nb">終わって<span class="u">いませんか？</span></span></h1>
       <p class="hero-sub">スマホが使えれば大丈夫。<br>今からでも、十分間に合います。</p>
-      <p class="hero-brand"><b>コアブリッジ ／ ゼロから教える AI入門塾</b><br>あなたのペースで、隣で一緒に。</p>
+      <p class="hero-brand"><b>コアブリッジ ／ ゼロから教える AI入門塾</b><br>AIと人の仕事を、隣でトータルコーディネート。</p>
       <div class="hero-btns">
         <a href="https://lin.ee/RNf6mxZ" class="btn btn-line">
           <svg width="19" height="19" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.48 2 2 5.64 2 10.13c0 4.02 3.56 7.39 8.37 8.02.33.07.77.22.88.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.9.56 1.1-.46 5.9-3.48 8.05-5.95C21.5 13.3 22 11.77 22 10.13 22 5.64 17.52 2 12 2z"/></svg>
@@ -484,12 +497,13 @@ footer { background: var(--ink); color: rgba(255,255,255,.72); padding: 62px 0 3
     </div>
     <div class="hero-visual with-moko reveal">
       <div class="moko-stage" id="mokoStage">
-        <div class="moko" id="moko">
+        <div class="moko" id="moko" role="button" tabindex="0" aria-label="もこをタップすると反応します">
           <img class="moko-body" src="image/moko-base.png?v=3" alt="AIコンシェルジュ もこ">
           <img class="moko-face" src="image/moko-happy.png?v=3" alt="" aria-hidden="true">
           <div class="moko-eye l"><div class="moko-pupil"></div><div class="moko-eyelid"></div></div>
           <div class="moko-eye r"><div class="moko-pupil"></div><div class="moko-eyelid"></div></div>
         </div>
+        <div class="moko-hint" id="mokoHint">👆 タップしてね</div>
         <div class="float-card fc1"><span class="ic">📱</span>スマホでOK</div>
         <div class="float-card fc2"><span class="ic">🌱</span>ゼロから安心</div>
       </div>
@@ -530,22 +544,22 @@ footer { background: var(--ink); color: rgba(255,255,255,.72); padding: 62px 0 3
   <div class="container">
     <div class="sec-head reveal">
       <span class="eyebrow">となりAIの考え方</span>
-      <h2>若者に戻る必要は、ありません。</h2>
+      <h2>AIと人の仕事を、<br>トータルコーディネート。</h2>
     </div>
     <figure class="imgslot standee reveal" data-label=""><img src="image/character.png" alt="AIコンシェルジュ もこ（立ち絵）" onerror="this.remove()"></figure>
-    <p class="lead reveal">昔の常識は、変わりました。あなたの歩んでこられた時間は、ムダではありません。<br>AIは、あなたの「経験」を活かすための道具です。</p>
+    <p class="lead reveal">AIに「まるごと任せる」のでも、「全部自分でやる」のでもありません。<br>あなたの仕事を棚卸しして、<b>AIに任せること・人がやること</b>を、一緒に組み立てます。</p>
     <div class="formula reveal">
-      <div class="f-box"><div class="big">AI</div><div class="small">最新の道具</div></div>
-      <div class="f-op">＋</div>
-      <div class="f-box alt"><div class="big">あなたの人生経験</div><div class="small">的確な指示</div></div>
-      <div class="f-op">＝</div>
-      <div class="f-box res"><div class="big">価値ある<br>アウトプット</div></div>
+      <div class="f-box"><div class="big">仕事を<br>棚卸し</div><div class="small">何に時間を使っているか整理</div></div>
+      <div class="f-op">→</div>
+      <div class="f-box alt"><div class="big">AIと<br>話し合う</div><div class="small">任せる所・人がやる所を決める</div></div>
+      <div class="f-op">→</div>
+      <div class="f-box res"><div class="big">あなたの仕事に<br>AIが入る</div><div class="small">業種に合わせて、仕組みにする</div></div>
     </div>
     <div class="value-notes reveal">
-      <div class="value-note"><b>昔は専門家だけ。</b>今は誰でも、専門家になれる。話しかければ、返事がくる時代です。</div>
-      <div class="value-note"><b>むしろ、人生経験がある人ほど、</b>AIをうまく使えます。伝えたいことが、はっきりしているからです。</div>
+      <div class="value-note"><b>一度学べば、AI講師として教えられる。</b>学んだことは、そのまま次の誰かに伝えられます。認定講師になれば、教える仕事も生まれます。</div>
+      <div class="value-note"><b>教えることが、いちばんの学び。</b>人に説明しようとすると、自分の「分かったつもり」に気づけます。教えるほど、あなたのAI力は深まります。</div>
     </div>
-    <p class="value-banner reveal">あなたの歩んでこられた時間は、ムダではありません。</p>
+    <p class="value-banner reveal">学ぶ → 教える → もっと分かる。<br>教えることが、いちばんの学びです。</p>
   </div>
 </section>
 
@@ -557,9 +571,9 @@ footer { background: var(--ink); color: rgba(255,255,255,.72); padding: 62px 0 3
       <h2>ゼロから、あなたのペースで。<br>分かるまで、何度でも。</h2>
     </div>
     <div class="promise-grid">
-      <div class="pcard reveal"><div class="ic">🤝</div><h3>マンツーマン／<br>少人数伴走</h3><p>3名まで。あなたのペースに合わせて、隣で一緒に進みます。</p></div>
-      <div class="pcard reveal"><div class="ic">📝</div><h3>個別カリキュラム</h3><p>決まったコースはありません。あなたの仕事・暮らしに、直接効く学びを設計します。</p></div>
-      <div class="pcard reveal"><div class="ic">💬</div><h3>質問し放題</h3><p>3ヶ月間・無制限サポート。「こんなこと聞いてもいい？」も、そのままにしません。</p></div>
+      <div class="pcard reveal"><div class="ic">🤝</div><h3>1対1で、<br>隣で伴走</h3><p>基本はマンツーマン。ご家族やお仲間と、2人まで一緒に受けることもできます。</p></div>
+      <div class="pcard reveal"><div class="ic">📝</div><h3>あなた専用の<br>カリキュラム</h3><p>決まったコースはありません。あなたの仕事・業種に合わせて、学ぶ順番から設計します。</p></div>
+      <div class="pcard reveal"><div class="ic">💬</div><h3>分からないことは、<br>いつでも聞ける</h3><p>コミュニティと講師が応えます。「こんなこと聞いてもいい？」も、そのままにしません。</p></div>
     </div>
   </div>
 </section>
@@ -568,7 +582,7 @@ footer { background: var(--ink); color: rgba(255,255,255,.72); padding: 62px 0 3
 <section class="journey">
   <div class="container">
     <div class="sec-head reveal">
-      <span class="eyebrow">3ヶ月の伴走</span>
+      <span class="eyebrow">となりで伴走</span>
       <h2>バラバラな不安が、<br>"安心して使える"まで、揃って届く。</h2>
     </div>
     <div class="journey-flow reveal">
@@ -579,7 +593,7 @@ footer { background: var(--ink); color: rgba(255,255,255,.72); padding: 62px 0 3
         <div class="j-note">受講前・人によってバラバラ「どこから始めれば…」</div>
       </div>
       <div class="j-mid">
-        <div class="mid-label">3ヶ月の伴走</div>
+        <div class="mid-label">となりで伴走</div>
         <div class="arrow">➜</div>
         <div class="j-note">STEP 02</div>
       </div>
@@ -600,15 +614,15 @@ footer { background: var(--ink); color: rgba(255,255,255,.72); padding: 62px 0 3
   <div class="container">
     <div class="sec-head reveal">
       <span class="eyebrow">カリキュラム</span>
-      <h2>3ヶ月で、こう変わっていきます。</h2>
+      <h2>学ぶ人から、教える人へ。</h2>
     </div>
     <div class="curr-grid">
-      <div class="cstep reveal"><div class="no">01</div><h3>AIって何？こわくない</h3><p>正体を知る。まずは"こわくない"ところから。</p></div>
-      <div class="cstep reveal"><div class="no">02</div><h3>今、何が起きているか</h3><p>今から始める理由を、やさしく整理します。</p></div>
-      <div class="cstep reveal"><div class="no">03</div><h3>安全の約束ごと</h3><p>個人情報・お金・うそ情報を見分ける力をつけます。</p></div>
-      <div class="cstep reveal"><div class="no">04</div><h3>毎日がラクになる使い方</h3><p>文章・要約・調べもの。暮らしに効く使い方から。</p></div>
-      <div class="cstep reveal"><div class="no">05</div><h3>上手なお願いの仕方</h3><p>仕事・趣味・家族に活かす、伝え方のコツ。</p></div>
-      <div class="cstep reveal"><div class="no">06</div><h3>少しだけ収入につなげる</h3><p>まずは月数千円から、無理なく。焦らず一歩ずつ。</p></div>
+      <div class="cstep reveal"><div class="no">01</div><h3>AIって何？こわくない</h3><p>ChatGPT・Gemini・Claude。まずは"こわくない"ところから。</p></div>
+      <div class="cstep reveal"><div class="no">02</div><h3>安全の約束ごと</h3><p>個人情報・お金・うそ情報を見分ける力をつけます。</p></div>
+      <div class="cstep reveal"><div class="no">03</div><h3>自分の仕事を棚卸し</h3><p>毎日の仕事を書き出して、AIが入る場所を見つけます。</p></div>
+      <div class="cstep reveal"><div class="no">04</div><h3>AIと話し合う</h3><p>任せること・人がやることを、AIと相談しながら決めます。</p></div>
+      <div class="cstep reveal"><div class="no">05</div><h3>業種に合わせてAI化</h3><p>お店・教室・事務・士業…あなたの仕事の形で仕組みにします。</p></div>
+      <div class="cstep reveal"><div class="no">06</div><h3>教える側へ</h3><p>学んだことを、次の誰かに。教えることで、いちばん深く身につきます。</p></div>
     </div>
     <p class="curr-note reveal"><b>個別調整について：</b>内容・順序は、お一人おひとりの目的や仕事に合わせて調整します。</p>
     <figure class="imgslot section-illust reveal" data-label="セクション挿絵 section-curriculum.jpg（1200×520推奨）"><img src="image/section-curriculum.jpg" alt="" loading="lazy" onerror="this.remove()"></figure>
@@ -641,71 +655,74 @@ footer { background: var(--ink); color: rgba(255,255,255,.72); padding: 62px 0 3
     <div class="sec-head reveal">
       <span class="eyebrow">料金プラン</span>
       <h2>「あなたの隣で教える」が、<br>6つのプランになりました。</h2>
-      <p>場所（オンライン／対面）× 形式（少人数／マンツーマン）で選べます。</p>
+      <p>スマホから始めて、本格伴走、専門バッジ、そして教える側のマスターへ。<br>あなたの段階に合わせて選べます。</p>
     </div>
     <div class="price-grid">
 
-      <article class="plan featured p1 reveal">
+      <article class="plan p5 reveal">
+        <div class="plan-head"><div class="code">ENTRY</div><div class="name">スマホマスター＋AI勉強会</div></div>
+        <div class="plan-body">
+          <div class="plan-meta">📱 多対一の勉強会・スマホでOK</div>
+          <ul class="plan-feats"><li>スマホの得意・苦手を、慣れるまで</li><li>AI勉強会に無料で参加できる</li><li>スマホマスター缶バッジつき</li></ul>
+          <div class="plan-price">3,000<small>円／月（税抜）</small></div>
+          <div class="plan-sub">税込 3,300円／月・いつでも解約OK</div>
+          <a href="quest.html#join" class="plan-btn">申し込む →</a>
+        </div>
+      </article>
+
+      <article class="plan p1 reveal">
+        <div class="plan-head"><div class="code">STARTER</div><div class="name">AI基礎プラン</div></div>
+        <div class="plan-body">
+          <div class="plan-meta">💻 オンライン・1対1 × 3回</div>
+          <ul class="plan-feats"><li>自分の仕事を棚卸しして、AIが入る所を整理</li><li>活用設計（設計書＋ロードマップ）</li><li>専用カリキュラム × 1</li><li>卒業で「AI基礎バッジ」</li></ul>
+          <div class="plan-price">30,000<small>円（税抜）</small></div>
+          <div class="plan-sub">税込 33,000円</div>
+          <a href="https://jolly-starlight-8f41c4.netlify.app/" target="_blank" rel="noopener" class="plan-btn">このプランを申し込む →</a>
+        </div>
+      </article>
+
+      <article class="plan featured p2 reveal">
         <div class="plan-ribbon">おすすめ</div>
-        <div class="plan-head"><div class="code">PLAN A</div><div class="name">となりAI教室</div></div>
+        <div class="plan-head"><div class="code">INSTRUCTOR +</div><div class="name">となりAI</div></div>
         <div class="plan-body">
-          <div class="plan-meta">💻 Zoomオンライン・3ヶ月</div>
-          <ul class="plan-feats"><li>月2回・専用カリキュラム作成6回</li><li>最大3人同時授業</li><li>月2回（合計6時間）</li></ul>
-          <div class="plan-price">50,000<small>円</small></div>
-          <span class="plan-tag">紹介1人で 10,000円引き</span>
-          <a href="https://jolly-starlight-8f41c4.netlify.app/" target="_blank" rel="noopener" class="plan-btn">このプランを申し込む →</a>
-        </div>
-      </article>
-
-      <article class="plan p2 reveal">
-        <div class="plan-head"><div class="code">PLAN B</div><div class="name">となりAI個別レッスン</div></div>
-        <div class="plan-body">
-          <div class="plan-meta">💻 Zoomオンライン・3ヶ月</div>
-          <ul class="plan-feats"><li>1対1 完全マンツーマン</li><li>プレミアム専用カリキュラム作成6回</li><li>卒業後の仕事などの伴走支援つき</li></ul>
-          <div class="plan-price">150,000<small>円</small></div>
-          <a href="https://jolly-starlight-8f41c4.netlify.app/" target="_blank" rel="noopener" class="plan-btn">このプランを申し込む →</a>
-        </div>
-      </article>
-
-      <article class="plan p3 reveal">
-        <div class="plan-head"><div class="code">PLAN C</div><div class="name">となりAI教室（対面）</div></div>
-        <div class="plan-body">
-          <div class="plan-meta">🏫 対面バージョン・大阪府限定</div>
-          <ul class="plan-feats"><li>最大3人同時授業</li><li>専用カリキュラム作成6回</li><li>月2回（合計6時間）</li></ul>
-          <div class="plan-price">75,000<small>円</small></div>
-          <div class="plan-sub">＋交通費 2,000円</div>
+          <div class="plan-meta">💻 オンライン・1対1 × 6〜8回</div>
+          <ul class="plan-feats"><li>事業に合わせた専用カリキュラム × 回数分</li><li>じっくり伴走サポート</li><li>修了で最大3つのバッジ</li><li>同じ授業に、2人まで一緒に参加OK</li></ul>
+          <div class="plan-price">100,000<small>円（税抜）</small></div>
+          <div class="plan-sub">税込 110,000円</div>
           <a href="https://jolly-starlight-8f41c4.netlify.app/" target="_blank" rel="noopener" class="plan-btn">このプランを申し込む →</a>
         </div>
       </article>
 
       <article class="plan p4 reveal">
-        <div class="plan-head"><div class="code">PLAN D</div><div class="name">となりAI個別レッスン（対面）</div></div>
+        <div class="plan-ribbon">NEW</div>
+        <div class="plan-head"><div class="code">SPECIALIST</div><div class="name">専門バッジ単品コース</div></div>
         <div class="plan-body">
-          <div class="plan-meta">🏫 対面バージョン・大阪府限定</div>
-          <ul class="plan-feats"><li>1対1 完全マンツーマン</li><li>プレミアム専用カリキュラム作成9回</li><li>卒業後の仕事などの伴走支援つき</li></ul>
-          <div class="plan-price">225,000<small>円</small></div>
-          <div class="plan-sub">＋交通費 2,000円</div>
+          <div class="plan-meta">🎖 16のジョブから1つを選ぶ</div>
+          <ul class="plan-feats"><li>約1〜2ヶ月・1対1 × 3〜4回</li><li>修了で専門バッジ1つ</li><li>アップグレードで＋2つまで追加OK</li></ul>
+          <div class="plan-price">50,000<small>円（税抜）</small></div>
+          <div class="plan-sub">税込 55,000円</div>
           <a href="https://jolly-starlight-8f41c4.netlify.app/" target="_blank" rel="noopener" class="plan-btn">このプランを申し込む →</a>
         </div>
       </article>
 
-      <article class="plan p5 reveal">
-        <div class="plan-head"><div class="code">PLAN E</div><div class="name">プチAIレッスン</div></div>
+      <article class="plan p3 reveal">
+        <div class="plan-head"><div class="code">ON-SITE</div><div class="name">出張となりAI教室</div></div>
         <div class="plan-body">
-          <div class="plan-meta">💻 オンライン・1ヶ月</div>
-          <ul class="plan-feats"><li>1時間 × 3回（合計3時間）</li><li>初回入門カリキュラム作成1回</li><li>まず体験してみたい方向け</li></ul>
-          <div class="plan-price">15,000<small>円</small></div>
+          <div class="plan-meta">🏫 あなたの職場で・対面</div>
+          <ul class="plan-feats"><li>現地で一緒に、実際に触る</li><li>分からないことを、その場で質問</li><li>特典は「となりAI」と同じ（最大3バッジ）</li></ul>
+          <div class="plan-price">150,000<small>円（税抜）</small></div>
+          <div class="plan-sub">税込 165,000円・エリア／交通費はご相談</div>
           <a href="https://jolly-starlight-8f41c4.netlify.app/" target="_blank" rel="noopener" class="plan-btn">このプランを申し込む →</a>
         </div>
       </article>
 
       <article class="plan p6 reveal">
-        <div class="plan-head"><div class="code">PLAN F</div><div class="name">初回導入スポット</div></div>
+        <div class="plan-head"><div class="code">MASTER</div><div class="name">となりAIマスターコース</div></div>
         <div class="plan-body">
-          <div class="plan-meta">🏠 対面・一回限定</div>
-          <ul class="plan-feats"><li>ご自宅へ訪問</li><li>AIとZoom導入までサポート</li><li>まず環境を整えたい方に</li></ul>
-          <div class="plan-price">20,000<small>円</small></div>
-          <div class="plan-sub">（交通費別途）</div>
+          <div class="plan-meta">👑 本気で認定を狙う人へ</div>
+          <ul class="plan-feats"><li>期間 半年・月4回</li><li>AIマスター認定をめざす、本気の資格勉強</li><li>認定後は講師として、教える仕事へ</li></ul>
+          <div class="plan-price">400,000<small>円（税抜）</small></div>
+          <div class="plan-sub">税込 440,000円</div>
           <a href="https://jolly-starlight-8f41c4.netlify.app/" target="_blank" rel="noopener" class="plan-btn">このプランを申し込む →</a>
         </div>
       </article>
@@ -714,8 +731,8 @@ footer { background: var(--ink); color: rgba(255,255,255,.72); padding: 62px 0 3
 
     <a href="quest.html" class="community-band reveal" style="text-decoration:none;cursor:pointer">
       <div class="ctext">
-        <h4>🎮 もっと気軽に｜となりAIクエスト（AIコミュニティ）</h4>
-        <p>ゲーム感覚で学ぶAIコミュニティ。会員限定zoom勉強会も。無料の体験会・LINE相談から。</p>
+        <h4>🎮 もっと気軽に｜AI QUEST SCHOOL（となりAIクエスト）</h4>
+        <p>学ぶ→教える→稼ぐ、を仲間と回すAIコミュニティ。会員限定zoom勉強会も。無料の体験会・LINE相談から。</p>
       </div>
       <div class="cprice" style="font-size:26px;line-height:1.3">月¥1,100<br><span style="font-size:16px;color:var(--muted);font-weight:500">（税込）／体験無料</span></div>
     </a>
@@ -731,30 +748,30 @@ footer { background: var(--ink); color: rgba(255,255,255,.72); padding: 62px 0 3
 </section>
 
 <!-- ROUTES -->
-<section class="routes">
+<section class="routes" id="routes">
   <div class="container">
     <div class="sec-head reveal">
       <span class="eyebrow">卒業後の道</span>
       <h2>「できた」の、その先まで。</h2>
-      <p>どちらも、あなた次第。どちらも、責任をもって。</p>
+      <p>一度学んだことは、次の誰かに教えられます。</p>
     </div>
     <div class="route-grid">
       <div class="route a reveal">
         <div class="rlabel">ROUTE A</div>
-        <h3>専門の世界へ</h3>
-        <div class="rsub">もっと専門的に学びたい方へ</div>
-        <p>あなたのレベルと目的に合わせて、責任を持ってお繋ぎします。</p>
-        <div class="rtags"><span>リスキリング</span><span>AIエージェント</span><span>専門スクール</span></div>
-        <p>私たちはパートナーとして協業しています。厳選された専門家集団と一緒に、あなただけのAI活用を作り上げていきましょう。</p>
+        <h3>専門を深める</h3>
+        <div class="rsub">もっと得意分野を伸ばしたい方へ</div>
+        <p>16のジョブから選んで、専門バッジを取得。あなたの仕事に合う分野を、1対1で深めます。</p>
+        <div class="rtags"><span>データ分析</span><span>ノーコード開発</span><span>画像・デザイン</span><span>動画生成</span><span>AIエージェント</span><span>資料制作</span><span>ほか</span></div>
+        <p>専門バッジ単品コース（1つ 50,000円・税抜）から始められます。</p>
       </div>
       <div class="route b reveal">
         <div class="rstar">★ おすすめ</div>
         <div class="rlabel">ROUTE B</div>
-        <h3>ここで深める</h3>
-        <div class="rsub">「コアブリッジで続けたい」という方へ</div>
-        <p>継続のマンツーマンで、ずっと伴走します。あなたのペースに合わせて。</p>
-        <p class="rnote">※ 継続プランの料金・頻度は、面談時にご説明します。</p>
-        <p class="rnote">※ いつでも戻って相談できます。</p>
+        <h3>AI講師として、教える側へ</h3>
+        <div class="rsub">教えることが、いちばんの学び</div>
+        <p>学んだバッジの分野は、そのまま次の誰かに教えられます。教えるほど理解が深まり、講座の売上の30％が講師に還元されます。</p>
+        <p>認定講師には、特製ピンバッジと、これまでの学びを製本したカリキュラムをお贈りします。AIマスターに認定されると、企業研修・講演などのお仕事もお願いしています。</p>
+        <p class="rnote">※ 講師としての活動内容・報酬の条件は、面談時にご説明します。</p>
       </div>
     </div>
   </div>
@@ -945,25 +962,59 @@ document.querySelectorAll('.imgslot img').forEach(im => {
       moko.classList.remove('show-face');
     }
   }
-  const EXPR = { ai:'think', beginner:'happy', price:'think', quest:'happy', contact:'wink', hello:'happy', thanks:'happy' };
+  const EXPR = { ai:'think', beginner:'happy', price:'think', quest:'happy', teach:'wink', contact:'wink', hello:'happy', thanks:'happy' };
   // 生きてる感：ときどきウインク
   (function idleWink(){ setTimeout(() => { if (!moko.classList.contains('show-face')) setFace('wink', 900); idleWink(); }, 7000 + Math.random()*6000); })();
   // マウスを乗せるとにっこり
   moko.addEventListener('mouseenter', () => { if (!moko.classList.contains('show-face')) setFace('happy', 1200); });
 
+  // クリック（タップ）で反応：表情・ジャンプ・キラキラ・ひとこと
+  const stage = document.getElementById('mokoStage'), hint = document.getElementById('mokoHint');
+  const TAP_LINES = [
+    ['えへへ、呼んだ？🌱', 'happy'],
+    ['くすぐったいよ〜！', 'wink'],
+    ['なにか気になること、ある？', 'think'],
+    ['いっしょにAI、はじめよっ✨', 'happy'],
+    ['もこはね、ふわふわが自慢なの☁️', 'wink'],
+    ['教えることが、いちばんの学びなんだって！', 'think'],
+  ];
+  const POPS = ['✨','💚','🌱','⭐','☁️'];
+  let taps = 0, tapLock = 0;
+  function tapMoko(ev){
+    const now = Date.now(); if (now - tapLock < 280) return; tapLock = now;
+    taps++; if (hint) hint.classList.add('hide');
+    const [line, face] = taps >= 8 && taps % 8 === 0 ? ['もう〜、つつきすぎだよ〜😆', 'wink'] : TAP_LINES[(taps - 1) % TAP_LINES.length];
+    setFace(face, 1600);
+    moko.classList.remove('boing'); void moko.offsetWidth; moko.classList.add('boing');
+    msg.textContent = line;
+    // キラキラ
+    const sr = stage.getBoundingClientRect();
+    const cx = ev && ev.clientX ? ev.clientX - sr.left : sr.width / 2;
+    const cy = ev && ev.clientY ? ev.clientY - sr.top : sr.height * 0.45;
+    for (let i = 0; i < 7; i++) {
+      const p = document.createElement('span'); p.className = 'moko-pop'; p.textContent = POPS[(i + taps) % POPS.length];
+      const ang = (Math.PI * 2 * i) / 7 + Math.random() * .5, dist = 50 + Math.random() * 45;
+      p.style.cssText = `--x:${cx}px;--y:${cy}px;--dx:${Math.cos(ang)*dist}px;--dy:${Math.sin(ang)*dist - 20}px;--r:${(Math.random()*60-30)|0}deg;--s:${16 + Math.random()*12}px`;
+      stage.appendChild(p); setTimeout(() => p.remove(), 950);
+    }
+  }
+  moko.addEventListener('click', tapMoko);
+  moko.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tapMoko(); } });
+
   // ---- scripted chat ----
   const msg=document.getElementById('mokoMsg'), quick=document.getElementById('mokoQuick');
   const form=document.getElementById('mokoForm'), input=document.getElementById('mokoInput');
   const A={
-    ai:{t:'AIは“かしこい道具”だよ。文章づくり・調べもの・要約もおまかせ。むずかしくないから安心してね😊',chips:[['もっと知る','#value']]},
+    ai:{t:'AIは“かしこい相棒”だよ。となりAIでは、あなたの仕事を棚卸しして、AIに任せること・人がやることを一緒に組み立てるよ😊',chips:[['考え方を見る','#value']]},
     beginner:{t:'もちろん平気！スマホが使えれば大丈夫。ゼロから、分かるまで何度でも一緒に進むよ🌱',chips:[['受講の流れ','#curriculum']]},
-    price:{t:'塾はマンツーマン／少人数のじっくり講座。コミュニティ「となりAIクエスト」は無料体験→月¥1,100（税込）だよ。',chips:[['料金を見る','#pricing'],['クエスト','quest.html']]},
-    quest:{t:'ゲーム感覚で学ぶAIコミュニティ！ジョブとバッジで、学びながら稼げるよ🎮',chips:[['クエストへ','quest.html']]},
+    price:{t:'AI基礎プランは3万円（税抜）、1対1でじっくりの「となりAI」は10万円（税抜）だよ。コミュニティは無料体験→月¥1,100（税込）！',chips:[['料金を見る','#pricing'],['クエスト','quest.html']]},
+    teach:{t:'なれるよ！一度学んだことは、AI講師として次の誰かに教えられるの。教えることが、いちばんの学びなんだ✨',chips:[['教える側への道','#routes']]},
+    quest:{t:'AI QUEST SCHOOLは、学ぶ→教える→稼ぐを仲間と回すAIコミュニティ！16のジョブとバッジがあるよ🎮',chips:[['クエストへ','quest.html']]},
     contact:{t:'うれしい！LINEでやさしくご案内するよ。「相談」って送ってね📲',chips:[['LINEで相談','https://lin.ee/RNf6mxZ']]},
     hello:{t:'やっほー！なにか気になることあった？下のボタンからも選べるよ🌱',chips:null},
     thanks:{t:'どういたしまして！いつでも聞いてね😊',chips:null}
   };
-  const DEFAULT=[['AIって何？','ai'],['初心者でも平気？','beginner'],['料金は？','price'],['クエストって？','quest'],['相談したい','contact']];
+  const DEFAULT=[['AIって何？','ai'],['初心者でも平気？','beginner'],['料金は？','price'],['教える側になれる？','teach'],['クエストって？','quest'],['相談したい','contact']];
   function chip(label,fn){ const b=document.createElement('button'); b.type='button'; b.className='moko-chip'; b.textContent=label; b.onclick=fn; return b; }
   function go(href){ if(href.startsWith('#')){ const t=document.querySelector(href); if(t) t.scrollIntoView({behavior:'smooth'}); } else { window.open(href, href.startsWith('http')?'_blank':'_self'); } }
   function renderDefault(){ quick.innerHTML=''; DEFAULT.forEach(([l,k])=>quick.appendChild(chip(l,()=>say(k)))); }
@@ -972,6 +1023,7 @@ document.querySelectorAll('.imgslot img').forEach(im => {
     else renderDefault(); }
   function match(q){ q=q.toLowerCase();
     if(/料金|値段|いくら|価格|費用|円/.test(q))return'price';
+    if(/講師|教え|先生|バッジ|認定/.test(q))return'teach';
     if(/初心者|むずかし|難し|不安|大丈夫|できるか/.test(q))return'beginner';
     if(/クエスト|コミュニティ|ゲーム/.test(q))return'quest';
     if(/相談|問い合わせ|line|ライン|電話|連絡/.test(q))return'contact';

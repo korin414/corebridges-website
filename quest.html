@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>となりAIクエスト｜学びながら、稼ぐ AIコミュニティ - コアブリッジ</title>
-<meta name="description" content="となりAIクエスト（AI QUEST SCHOOL）は、学びながら稼ぐゲーム感覚のAIコミュニティ。無料体験から、月額1,000円で参加。17のジョブとバッジで、初心者から専門家、そして教える側へ。">
+<title>AI QUEST SCHOOL（となりAIクエスト）｜学びながら、稼ぐ - コアブリッジ</title>
+<meta name="description" content="AI QUEST SCHOOL（となりAIクエスト）は、AIと人の仕事をトータルコーディネートする、ゲーム感覚のAIスクール＆コミュニティ。一度学べばAI講師として教える側へ。無料体験から、月額1,000円（税抜）で参加。16のジョブとバッジで、初心者からAIマスターへ。">
 <meta name="theme-color" content="#0d0e24">
-<meta property="og:title" content="となりAIクエスト｜学びながら、稼ぐ">
-<meta property="og:description" content="ゲーム感覚で学ぶAIコミュニティ。無料体験 → 月1,000円。学ぶ→教える→稼ぐ。">
+<meta property="og:title" content="AI QUEST SCHOOL｜学びながら、稼ぐ">
+<meta property="og:description" content="AIと人の仕事を、トータルコーディネート。一度学べばAI講師に。教えることが、いちばんの学び。無料体験 → 月1,000円（税抜）。">
 <meta property="og:image" content="https://corebridges.site/image/quest/hero-title.jpg">
 <meta property="og:url" content="https://corebridges.site/quest.html">
 <link rel="canonical" href="https://corebridges.site/quest.html">
@@ -38,7 +38,7 @@ body{
     linear-gradient(180deg,#0c0d22 0%, #12143a 60%, #0c0d22 100%);
   background-attachment:fixed;
 }
-h1,h2,h3,h4,.pix{font-family:'DotGothic16','Noto Sans JP',sans-serif;font-weight:400;letter-spacing:.02em;line-height:1.5}
+h1,h2,h3,h4,.pix{font-family:'DotGothic16','Noto Sans JP',sans-serif;font-weight:400;letter-spacing:.02em;line-height:1.5;word-break:auto-phrase;text-wrap:balance}
 .en{font-family:'Press Start 2P',monospace;letter-spacing:.02em}
 .container{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 22px}
 section{position:relative;padding:78px 0}
@@ -95,6 +95,7 @@ nav{position:fixed;inset:0 0 auto 0;z-index:100;height:62px;display:flex;align-i
 /* generic grid cards */
 .grid{display:grid;gap:16px}
 .g3{grid-template-columns:repeat(3,1fr)}
+@media (min-width:901px){ .g3>:last-child:nth-child(3n+1){grid-column:2} }
 .g2{grid-template-columns:repeat(2,1fr)}
 
 /* bosses */
@@ -220,15 +221,15 @@ footer{background:#08091a;border-top:2px solid var(--line);padding:44px 0 28px}
       <span class="tag">🔰 初心者から</span>
       <span class="tag">💬 会員限定zoom勉強会</span>
     </div>
-    <h1 class="reveal"><span class="en">AI QUEST</span>となりAIクエスト</h1>
+    <h1 class="reveal"><span class="en">AI QUEST SCHOOL</span>となりAIクエスト</h1>
     <p class="lead reveal">きみの物語を、一緒に書こう。</p>
-    <p class="sub reveal">ゲーム感覚で進む、AIの冒険コミュニティ。まずは<b style="color:#fff">無料の体験会・LINE相談</b>から。続けるなら<b style="color:#fff">月1,100円（税込）</b>で、学び放題・稼ぎ放題。</p>
+    <p class="sub reveal">学ぶ・繋がる・話す・稼ぐ。AIと人の仕事を<b style="color:#fff">トータルコーディネート</b>する、ゲーム感覚のAIスクール＆コミュニティ。一度学んだら、<b style="color:#fff">AI講師として次の誰かへ</b>。まずは<b style="color:#fff">無料の体験会・LINE相談</b>から。続けるなら<b style="color:#fff">月1,100円（税込）</b>。</p>
     <div class="hero-btns reveal">
       <a href="https://lin.ee/RNf6mxZ" class="gbtn green">▶ 無料で相談・体験</a>
       <a href="#pricing" class="gbtn ghost">料金・入会を見る</a>
     </div>
     <div class="hero-visual reveal">
-      <img src="image/quest/quest-start.jpg" alt="となりAIクエスト - LET'S QUEST" loading="eager">
+      <img src="image/quest/quest-start.jpg?v=3" alt="となりAIクエスト - LET'S QUEST" loading="eager">
       <div class="hero-stats">
         <div class="bar hp"><span>HP</span><span class="track"><span class="fill" style="width:96%"></span></span></div>
         <div class="bar xp"><span>XP</span><span class="track"><span class="fill" style="width:72%"></span></span></div>
@@ -236,6 +237,29 @@ footer{background:#08091a;border-top:2px solid var(--line);padding:44px 0 28px}
     </div>
   </div>
 </header>
+
+<!-- CONCEPT -->
+<section id="concept">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">🤝 AIと、仕事を共につくる</span>
+      <h2>AIと人の仕事を、<span class="c">トータルコーディネート</span></h2>
+      <p>AIに丸投げでも、ぜんぶ自分でもない。あなたの仕事に、AIという相棒を。</p>
+    </div>
+    <div class="reveal">
+      <img class="feature-img" src="image/quest/concept.jpg?v=3" alt="AIと、仕事を共につくる：STEP01 自分の仕事を棚卸しする／STEP02 AIと話し合う／STEP03 業種別にAI化を進めていく" loading="lazy">
+    </div>
+    <div class="grid g3" style="margin-top:20px">
+      <div class="tre reveal"><div class="ic">🗂️</div><h3>STEP 01 仕事を棚卸し</h3><p>企画・資料・接客・分析…毎日の仕事を書き出して、AIが入る場所を見つける。</p></div>
+      <div class="tre reveal"><div class="ic">💬</div><h3>STEP 02 AIと話し合う</h3><p>どんな価値を届けたいか。任せること・人がやることを、AIと相談して決める。</p></div>
+      <div class="tre reveal"><div class="ic">🛠️</div><h3>STEP 03 業種別にAI化</h3><p>料理・デザイン・授業・接客。あなたの業種の形で、仕組みにしていく。</p></div>
+    </div>
+    <div class="reveal" style="margin-top:26px">
+      <img class="feature-img" src="image/quest/guild.jpg?v=3" alt="同志よ、ここに集え：AI化を、仲間と一緒に設計する" loading="lazy">
+      <p class="feature-cap">同志よ、ここに集え — AI化の設計を、同じ問題意識をもつ仲間と一緒に進めます。</p>
+    </div>
+  </div>
+</section>
 
 <!-- BOSSES -->
 <section class="bosses" id="bosses">
@@ -266,12 +290,12 @@ footer{background:#08091a;border-top:2px solid var(--line);padding:44px 0 28px}
       <p>ひとつずつ、解除していこう。</p>
     </div>
     <div class="grid g3">
-      <div class="tre gold reveal"><div class="ic">👛</div><h3>月1,000円でOK</h3><p>高額課金なし。無理なく続けられます。</p></div>
-      <div class="tre reveal"><div class="ic">📖</div><h3>学びながら稼げる</h3><p>学ぶ→教える→稼ぐの循環に乗れる。</p></div>
-      <div class="tre reveal"><div class="ic">📜</div><h3>専用カリキュラムを作れる</h3><p>あなたの目的に合わせた道を設計。</p></div>
-      <div class="tre reveal"><div class="ic">📣</div><h3>講師経験が将来の強み</h3><p>教える経験が、そのまま実績になる。</p></div>
-      <div class="tre reveal"><div class="ic">🪄</div><h3>初心者から教えられる</h3><p>教わった人が、次の誰かを教える。</p></div>
-      <div class="tre reveal"><div class="ic">💬</div><h3>会員限定zoom勉強会</h3><p>仲間と一緒に、いつでも聞ける場所。</p></div>
+      <div class="tre gold reveal"><div class="ic">👛</div><h3>月1,000円（税抜）でOK</h3><p>続けやすい金額で始める。高額課金なし。</p></div>
+      <div class="tre reveal"><div class="ic">📖</div><h3>学びながら稼げる</h3><p>学んだことが、教える仕事になって還ってくる。</p></div>
+      <div class="tre reveal"><div class="ic">📜</div><h3>専用カリキュラム</h3><p>あなたの仕事に合う設計を、一緒に作る。</p></div>
+      <div class="tre reveal"><div class="ic">📣</div><h3>講師経験が将来の強み</h3><p>教える側に回る日へ。教えた経験が、そのまま実績になる。</p></div>
+      <div class="tre reveal"><div class="ic">🪄</div><h3>初心者から教えられる</h3><p>0から、次の誰かへ。一度学べばAI講師として教えられる。</p></div>
+      <div class="tre reveal"><div class="ic">💬</div><h3>会員限定zoom勉強会</h3><p>仲間と一緒に取り組む。分からないことは、ここで聞ける。</p></div>
     </div>
   </div>
 </section>
@@ -281,12 +305,12 @@ footer{background:#08091a;border-top:2px solid var(--line);padding:44px 0 28px}
   <div class="container">
     <div class="sec-head reveal">
       <span class="eyebrow">🗺 JOB MAP</span>
-      <h2>17のジョブが、<span class="c">夜空に並ぶ</span></h2>
+      <h2>16のジョブが、<span class="c">夜空に並ぶ</span></h2>
       <p>初心者 → 専門家 → AIマスターへ。きみの道は、たどり方で選ぶ。</p>
     </div>
     <div class="reveal">
-      <img class="feature-img" src="image/quest/jobmap.jpg" alt="17のジョブマップ：初心者・専門家・AIマスター" loading="lazy">
-      <p class="feature-cap">ライティング／動画生成／SNS運用／データ分析／画像デザイン／自動化／AIエージェント／アプリ開発 … など17ジョブ＋認定バッジ</p>
+      <img class="feature-img" src="image/quest/jobmap.jpg?v=4" alt="16のジョブマップ：入門職・専門職・上級職（AIマスター）" loading="lazy">
+      <p class="feature-cap"><b>入門職</b>：AI基礎／スマホマスター　<b>専門職</b>：データ分析／ノーコード開発／画像・デザイン／動画生成／AIエージェント／自動化ワークフロー／プロンプト設計／SNS運用／AIライティング／資料制作／ゲーム開発／AI音楽家　<b>上級職</b>：AIマスター／教え方・講師育成</p>
     </div>
   </div>
 </section>
@@ -296,20 +320,33 @@ footer{background:#08091a;border-top:2px solid var(--line);padding:44px 0 28px}
   <div class="container">
     <div class="sec-head reveal">
       <span class="eyebrow">🔁 学ぶ→教える→稼ぐ</span>
-      <h2>教えるほど、<span class="c">知識が還ってくる</span></h2>
-      <p>教わった人が、また次の誰かを教える。売上もポイントも、みんなで循環。</p>
+      <h2>教えることが、<span class="c">いちばんの学び</span></h2>
+      <p>一度学べば、AI講師として教えられる。教えるために学び、教えることで自分が学べる。<br>教わった人が、また次の誰かを教える ― この循環が、あなたを強くします。</p>
     </div>
     <div class="reveal">
-      <img class="feature-img" src="image/quest/teaching-chain.jpg" alt="教える連鎖 Teaching Chain" loading="lazy">
+      <img class="feature-img" src="image/quest/cycle.jpg?v=3" alt="学ぶ→教える→稼ぐ：この永久機関が、あなたを強くする" loading="lazy">
+    </div>
+    <div class="reveal" style="margin-top:20px">
+      <img class="feature-img" src="image/quest/teaching-chain.jpg?v=3" alt="教える連鎖 Teaching Chain：教えた人が、また次の誰かを教える" loading="lazy">
     </div>
     <div class="loop-grid">
       <div class="reveal">
-        <img class="feature-img" src="image/quest/revenue-share.jpg" alt="売上の分け前 Revenue Share：講師30% 紹介20% 運営30% AIマスター20%" loading="lazy">
+        <img class="feature-img" src="image/quest/revenue-share.jpg?v=3" alt="売上の分け前 Revenue Share：講師30% 紹介20% 運営30% AIマスター20%" loading="lazy">
         <p class="feature-cap">売上の分け前 — 講師30％／紹介・営業20％／運営30％／AIマスター・教え方講師20％</p>
       </div>
       <div class="reveal">
-        <img class="feature-img" src="image/quest/points.jpg" alt="ポイント制度 Points System" loading="lazy">
-        <p class="feature-cap">ポイント制度 — 講師紹介ごとに21,000pt。ためたポイントは換金、または新バッチ取得に充当可。</p>
+        <img class="feature-img" src="image/quest/points.jpg?v=3" alt="ポイント制度 Points &amp; Cashback" loading="lazy">
+        <p class="feature-cap">ポイント制度 — 講師の紹介で税抜価格の20％（講師以外の方の紹介は15％）、講座完了でバッジに応じたポイント。講師を1回クリアで貯めたポイントを全額キャッシュに、60,000pt以上はいつでも換金OK、新バッジ取得の支払いにも充当できます。※有効期限あり／返金時は失効</p>
+      </div>
+    </div>
+    <div class="loop-grid" style="margin-top:20px">
+      <div class="reveal">
+        <img class="feature-img" src="image/quest/pin-badge.jpg?v=3" alt="AI講師に贈られる、特製ピンバッジ" loading="lazy">
+        <p class="feature-cap">認定講師には、特製ピンバッジを。認定の証は、あなたの勲章です。</p>
+      </div>
+      <div class="reveal">
+        <img class="feature-img" src="image/quest/bound-book.jpg?v=3" alt="カリキュラムの製本化 Bound &amp; Kept" loading="lazy">
+        <p class="feature-cap">認定講師は、これまでの学びを製本化。家で、いつでも読める手元の書に。</p>
       </div>
     </div>
   </div>
@@ -332,12 +369,12 @@ footer{background:#08091a;border-top:2px solid var(--line);padding:44px 0 28px}
         <div class="body">
           <div class="meta">🎮 会員限定zoom勉強会に参加し放題</div>
           <ul>
-            <li>17ジョブ＆バッジで学べる</li>
+            <li>16ジョブ＆バッジで学べる</li>
             <li>学ぶ→教える→稼ぐに参加できる</li>
             <li>いつでも解約OK（自分で手続き可）</li>
           </ul>
           <div class="price">¥1,100<small>/月（税込）</small></div>
-          <div class="note">※無料の体験会・LINE相談もOK</div>
+          <div class="note">※税抜1,000円／無料の体験会・LINE相談もOK</div>
           <a href="#join" class="gbtn green sm" data-plan="community">▶ 入会する（月¥1,100）</a>
         </div>
       </article>
@@ -346,47 +383,64 @@ footer{background:#08091a;border-top:2px solid var(--line);padding:44px 0 28px}
       <article class="plan reveal">
         <div class="head"><div class="code">ENTRY</div><div class="pname">スマホマスター＋AI勉強会</div></div>
         <div class="body">
-          <div class="meta">📱 はじめての1ヶ月・スマホでOK</div>
+          <div class="meta">📱 多対一のAI勉強会で、スマホに慣れる</div>
           <ul>
-            <li>スマホの基本からAI入門まで</li>
-            <li>AI勉強会 無料参加</li>
-            <li>スマホマスター缶バッジGET</li>
+            <li>スマホの得意・苦手を、慣れるまで</li>
+            <li>AI連携のはじめ方を、相談しながら</li>
+            <li>スマホマスター缶バッジ＋AI勉強会 無料参加権</li>
           </ul>
           <div class="price">¥3,300<small>/月（税込）</small></div>
-          <div class="note">※いつでも解約OK（自分で手続き可）</div>
+          <div class="note">※税抜3,000円／いつでも解約OK（自分で手続き可）</div>
           <a href="#join" class="gbtn cyan sm" data-plan="smartphone">申し込む</a>
         </div>
       </article>
 
       <!-- AI basics -->
       <article class="plan reveal">
-        <div class="head"><div class="code">COURSE</div><div class="pname">AI基礎プラン</div></div>
+        <div class="head"><div class="code">STARTER</div><div class="pname">AI基礎プラン</div></div>
         <div class="body">
-          <div class="meta">📘 ChatGPT・Geminiを自分のものに</div>
+          <div class="meta">📘 自分の仕事に、AIがどう入るかを伴走で設計</div>
           <ul>
-            <li>1on1レッスン 60分 × 3回</li>
-            <li>AI基礎カリキュラム</li>
-            <li>卒業時にAI基礎バッジ授与</li>
+            <li>1対1オンライン × 3回</li>
+            <li>仕事の棚卸し → 活用設計（設計書＋ロードマップ）</li>
+            <li>専用カリキュラム × 1／卒業で AI基礎バッジ</li>
           </ul>
           <div class="price">¥30,000</div>
-          <div class="note">※税抜き</div>
+          <div class="note">※税抜（税込33,000円）</div>
           <a href="#join" class="gbtn sm" data-plan="ai-basic">申し込む</a>
         </div>
       </article>
 
       <!-- Tonari AI plan -->
       <article class="plan reveal">
-        <div class="head"><div class="code">COURSE</div><div class="pname">となりAIプラン</div></div>
+        <div class="head"><div class="code">INSTRUCTOR +</div><div class="pname">となりAI</div></div>
         <div class="body">
-          <div class="meta">🧭 自分の事業に、AIを組み込む</div>
+          <div class="meta">🧭 事業に、AIを仕込む。1つを、深く学ぶ</div>
           <ul>
-            <li>1on1レッスン × 6回</li>
-            <li>卒業生 最大3バッジGET</li>
-            <li>ペア割：同じ授業を2人まで／紹介者と各1万円割引</li>
+            <li>1対1オンライン × 6〜8回</li>
+            <li>専用カリキュラム × 回数分／修了で最大3バッジ</li>
+            <li>同じ授業に、2人まで一緒に参加OK</li>
           </ul>
           <div class="price">¥100,000</div>
-          <div class="note">※税抜き</div>
+          <div class="note">※税抜（税込110,000円）</div>
           <a href="#join" class="gbtn sm" data-plan="tonari">申し込む</a>
+        </div>
+      </article>
+
+      <!-- Badge single -->
+      <article class="plan reveal" style="position:relative">
+        <div class="ribbon">NEW</div>
+        <div class="head"><div class="code">SPECIALIST</div><div class="pname">専門バッジ単品コース</div></div>
+        <div class="body">
+          <div class="meta">🎖 16のジョブから、1つを選ぶ</div>
+          <ul>
+            <li>期間 約1〜2ヶ月・1対1 × 3〜4回</li>
+            <li>修了で専門バッジ1つ</li>
+            <li>アップグレードで＋2つまで追加OK</li>
+          </ul>
+          <div class="price">¥50,000</div>
+          <div class="note">※税抜（税込55,000円）</div>
+          <a href="#join" class="gbtn sm" data-plan="badge">申し込む</a>
         </div>
       </article>
 
@@ -394,34 +448,35 @@ footer{background:#08091a;border-top:2px solid var(--line);padding:44px 0 28px}
       <article class="plan reveal">
         <div class="head"><div class="code">ON-SITE</div><div class="pname">出張となりAI教室</div></div>
         <div class="body">
-          <div class="meta">🏫 リアル会場で、横で教わる（大阪府内）</div>
+          <div class="meta">🏫 本当に となりで、分からないことを聞きながら</div>
           <ul>
-            <li>対面での伴走レッスン</li>
-            <li>特典はとなりAIプランと同じ</li>
-            <li>出張・リアル対応</li>
+            <li>あなたの職場で、実際に触る</li>
+            <li>分からないことを、その場で解決</li>
+            <li>特典は「となりAI」と同じ（最大3バッジ）</li>
           </ul>
           <div class="price">¥150,000</div>
-          <div class="note">※税抜き ／ 交通費別途</div>
+          <div class="note">※税抜（税込165,000円）／エリア・交通費はご相談</div>
           <a href="#join" class="gbtn sm" data-plan="onsite">申し込む</a>
         </div>
       </article>
 
-      <!-- Cross link to juku -->
+      <!-- Master -->
       <article class="plan reveal" style="box-shadow:0 0 0 2px var(--magenta), var(--shadow-hard)">
-        <div class="head" style="background:linear-gradient(180deg,#3a1440,#2a0e34)"><div class="code">SCHOOL</div><div class="pname">がっつり伴走したい人へ</div></div>
+        <div class="head" style="background:linear-gradient(180deg,#3a1440,#2a0e34)"><div class="code">MASTER</div><div class="pname">となりAIマスターコース</div></div>
         <div class="body">
-          <div class="meta">🎓 となりAI（塾）のマンツーマン講座</div>
+          <div class="meta">👑 AIマスターを取るための、本気の資格勉強</div>
           <ul>
-            <li>3ヶ月の本格マンツーマン／少人数</li>
-            <li>個別カリキュラムでAIネイティブ化</li>
-            <li>初心者〜個人事業・法人まで</li>
+            <li>期間 半年・月4回</li>
+            <li>どんな業種にも統合・伴走できる力を</li>
+            <li>認定後は、講師育成・企業研修などのお仕事へ</li>
           </ul>
-          <div class="price" style="font-size:22px">塾のページへ</div>
-          <a href="index.html#services" class="gbtn mag sm">となりAI（塾）を見る →</a>
+          <div class="price">¥400,000</div>
+          <div class="note">※税抜（税込440,000円）</div>
+          <a href="#join" class="gbtn mag sm" data-plan="master">申し込む</a>
         </div>
       </article>
     </div>
-    <p class="tax-note">月額プラン（コミュニティ・スマホマスター）の表示は税込です。個別講座は税抜き表示です。最新の料金・条件は<a href="legal.html" style="color:var(--cyan)">特定商取引法に基づく表記</a>をご確認ください。</p>
+    <p class="tax-note">月額プラン（コミュニティ・スマホマスター）の表示は税込です。個別講座は税抜表示（カッコ内が税込）です。1対1の講座は<a href="index.html#pricing" style="color:var(--cyan)">となりAI（塾）のページ</a>でも詳しくご案内しています。最新の料金・条件は<a href="legal.html" style="color:var(--cyan)">特定商取引法に基づく表記</a>をご確認ください。</p>
   </div>
 </section>
 
@@ -440,9 +495,11 @@ footer{background:#08091a;border-top:2px solid var(--line);padding:44px 0 28px}
           <select id="plan" name="plan">
             <option value="community">コミュニティ会員（月¥1,100・税込）</option>
             <option value="smartphone">スマホマスター＋AI勉強会（月¥3,300・税込）</option>
-            <option value="ai-basic">AI基礎プラン（¥30,000）</option>
-            <option value="tonari">となりAIプラン（¥100,000）</option>
-            <option value="onsite">出張となりAI教室（¥150,000）</option>
+            <option value="ai-basic">AI基礎プラン（¥30,000・税抜）</option>
+            <option value="tonari">となりAI（¥100,000・税抜）</option>
+            <option value="badge">専門バッジ単品コース（¥50,000・税抜）</option>
+            <option value="onsite">出張となりAI教室（¥150,000・税抜）</option>
+            <option value="master">となりAIマスターコース（¥400,000・税抜）</option>
             <option value="unsure">まだ決めていない／相談したい</option>
           </select>
         </div>
@@ -539,7 +596,9 @@ const LINKS = {
     smartphone: 'https://buy.stripe.com/5kQ6oIf9J5SGfmobeagMw01', // 月¥3,300(税込) サブスク
     'ai-basic': '', // ★¥30,000 の Stripe 決済リンク（任意）
     tonari:     '', // ★¥100,000 の Stripe 決済リンク（任意）
-    onsite:     ''  // ★¥150,000 の Stripe 決済リンク（任意）
+    badge:      '', // ★¥50,000 の Stripe 決済リンク（任意）
+    onsite:     '', // ★¥150,000 の Stripe 決済リンク（任意）
+    master:     ''  // ★¥400,000 の Stripe 決済リンク（任意）
   }
 };
 function destFor(plan){
