@@ -1,0 +1,3 @@
+# お申込み・ご契約ページ（AI QUEST SCHOOL 契約アプリ）を corebridges.site/apply/ で表示する
+/apply    /apply/                                              301
+/apply/*  https://aiquest-school-contract.netlify.app/:splat  200
