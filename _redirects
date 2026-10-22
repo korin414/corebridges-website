@@ -1,3 +1,4 @@
-# お申込み・ご契約ページ（AI QUEST SCHOOL 契約アプリ）を corebridges.site/apply/ で表示する
-/apply    /apply/                                              301
-/apply/*  https://aiquest-school-contract.netlify.app/:splat  200
+# お申込み・ご契約ページ（AI QUEST SCHOOL 契約アプリ）へ転送する
+# Cloudflare Pages は外部URLへの 200（プロキシ）に対応していないため、302 で転送する
+/apply    https://aiquest-school-contract.netlify.app/         302
+/apply/*  https://aiquest-school-contract.netlify.app/:splat   302
